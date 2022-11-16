@@ -11,27 +11,77 @@ successData = ''
 
 pattern = 'E[A-Z]\d\d\d[A-Z]\d[A-Z]'
 
-def getUnitStats():
-    print('asdf')
-# for i in range(len(elkCodes)):
-# for i in range(10):
-# def extractDataFromTables():
+def getUnitStats(applicantTable, successTable):
+    cleanApplicantTable = cleanTable(applicantTable)
+    cleanSuccessTable = cleanTable(successTable)
+    print('cleanApplicantTable - ', cleanApplicantTable)
+    print('cleanSuccessTable - ', cleanSuccessTable)
+
+def cleanTable(dirtyTable):
+    cleanTableArr = list()
+
+    for dataRow in dirtyTable:
+        if checkDataRelevant(dataRow):
+            cleanTableArr.append(dataRow)
+
+    return cleanTableArr
+
+def checkDataRelevant(dataRow):
+    emptyRow = ['', '', '', '', '', '', '', '']
+    if 'Pre-Draw Applicants\nChoice' in dataRow or 'Adult' in dataRow or 'Preference Points' in dataRow:
+        return False
+    elif 'Total Choice 1' in dataRow or 'Total Choice 2' in dataRow or 'Total Choice 3' in dataRow or 'Total Choice 4' in dataRow or 'Grand Total' in dataRow:
+        return False
+    elif 'Pre-Draw Applicants\nChoice\nPreference Points\n1' in dataRow or 'Res \n-' in dataRow:
+        return False
+    elif 'Post-Draw Successful' in dataRow  or dataRow == emptyRow or 'Post-Draw Successful\nChoice\nPreference Points\n1' in dataRow:
+        return False
+    else:
+        return True
+
+def combineUnitStats(successData, applicantData):
+    combinedData = {}
+    lastApplicantPrefPoint = 0
+    lastSuccessPrefPoint = 0
+    rowIndex = 0
+    # iterate through list of applicant datas
+    for row in applicantData:
+        #if 0 index, check if there is a one
+        # if last index, check if it is a total row
+        # ie get last value and if it's greater then omit data
+        # assign applicant and success data, default to 0 success data
+        print('cats')
+    for row in successData:
+        # first index check if one
+        # check last index
+        print(row)
+    # then go through successData
+
+
 for table in allTables:
     currentCode = elkCodes[currentHuntIndex]
-    tableData = table.data[0][0]
-    print(currentCode)
-    print(table)
-    if 'Pre-Draw Applicants' in tableData:
-        applicantData = tableData
-    elif 'Post-Draw Successful' in tableData:
-        successData = tableData
+    tableHeader = table.data[0][0]
+    tableData = table.data
 
-        finalHuntObj = {
-            [currentCode]: getUnitStats(applicantData, successData)
-        }
-        
-        allElkData.append(finalHuntObj)
+    print(currentCode)
+
+    if 'Pre-Draw Applicants' in tableHeader:
+        # print('Pre Draw Table', tableData)
+        applicantData = tableData
+
+        # logic for setting data
+        elkDataObj = getUnitStats(applicantData, successData)        
+        allElkData.append(elkDataObj)
         currentHuntIndex += 1
+        applicantData = ''
+        successData = ''
+
+        # print(tableData)
+    elif 'Post-Draw Successful' in tableHeader:
+        # print(tableData)
+        # print('Post Draw Table', tableData)
+        # print(currentCode)
+        successData = tableData
         # get applicant data
         # get success data
         # pass them to the above 
@@ -45,3 +95,4 @@ for table in allTables:
 # if there is no elk code
 # go on
 # extractDataFromTables()
+# print(allElkData)
