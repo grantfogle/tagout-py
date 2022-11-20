@@ -4,7 +4,7 @@ from elkCodes import elkCodes
 
 allTables = camelot.read_pdf("../../../../2021ElkDrawRecap-1.pdf", pages="all")
 
-allElkData = []
+allElkData = {}
 currentHuntIndex = 0
 applicantData = ''
 successData = ''
@@ -14,8 +14,10 @@ pattern = 'E[A-Z]\d\d\d[A-Z]\d[A-Z]'
 def getUnitStats(applicantTable, successTable):
     cleanApplicantTable = cleanTable(applicantTable)
     cleanSuccessTable = cleanTable(successTable)
-    print('cleanApplicantTable - ', cleanApplicantTable)
-    print('cleanSuccessTable - ', cleanSuccessTable)
+
+    finalStatsObj = combineUnitStats(cleanApplicantTable, cleanSuccessTable)
+    print(finalStatsObj)
+    return finalStatsObj
 
 def cleanTable(dirtyTable):
     cleanTableArr = list()
@@ -23,7 +25,6 @@ def cleanTable(dirtyTable):
     for dataRow in dirtyTable:
         if checkDataRelevant(dataRow):
             cleanTableArr.append(dataRow)
-
     return cleanTableArr
 
 def checkDataRelevant(dataRow):
@@ -39,23 +40,53 @@ def checkDataRelevant(dataRow):
     else:
         return True
 
-def combineUnitStats(successData, applicantData):
+def combineUnitStats(applicantData, successData):
     combinedData = {}
     lastApplicantPrefPoint = 0
+    applicantIndex = 0
     lastSuccessPrefPoint = 0
-    rowIndex = 0
+    successIndex = 0
     # iterate through list of applicant datas
     for row in applicantData:
+        for i in range(len(row)):
+            if applicantIndex == 0:
+                if row[i] and row[i].isnumeric():
+                    obj = {
+                        'resident': {
+                            'applicants': row[i+2],
+                            'success': 0
+                        },
+                        'nonResident': {
+                            'applicants': row[i+3],
+                            'success': 0
+                        }
+                    }
+                    combinedData[row[i+1]] = obj    
+                    break
+        
+            if row[i] and row[i].isnumeric():
+                obj = obj = {
+                    'resident': {
+                        'applicants': row[i+1],
+                        'success': 0
+                    },
+                    'nonResident': {
+                        'applicants': row[i+2],
+                        'success': 0
+                    }
+                }
+                combinedData[row[i+1]] = obj
+                break
         #if 0 index, check if there is a one
         # if last index, check if it is a total row
         # ie get last value and if it's greater then omit data
         # assign applicant and success data, default to 0 success data
-        print('cats')
-    for row in successData:
+    # for row in successData:
         # first index check if one
         # check last index
-        print(row)
+        # print(row)
     # then go through successData
+    return combinedData
 
 
 for table in allTables:
@@ -63,15 +94,15 @@ for table in allTables:
     tableHeader = table.data[0][0]
     tableData = table.data
 
-    print(currentCode)
-
     if 'Pre-Draw Applicants' in tableHeader:
         # print('Pre Draw Table', tableData)
         applicantData = tableData
 
         # logic for setting data
-        elkDataObj = getUnitStats(applicantData, successData)        
-        allElkData.append(elkDataObj)
+        
+        print(currentCode)
+        elkDataObj = getUnitStats(applicantData, successData)
+        allElkData[currentCode] = elkDataObj
         currentHuntIndex += 1
         applicantData = ''
         successData = ''
@@ -95,4 +126,6 @@ for table in allTables:
 # if there is no elk code
 # go on
 # extractDataFromTables()
-# print(allElkData)
+print('ALL ELK DATA: ', allElkData)
+with open("elk-final-stats.json", "w") as outfile:
+    json.dump(allElkData, outfile)
