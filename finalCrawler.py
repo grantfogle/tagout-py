@@ -16,7 +16,7 @@ def getUnitStats(applicantTable, successTable):
     cleanSuccessTable = cleanTable(successTable)
 
     finalStatsObj = combineUnitStats(cleanApplicantTable, cleanSuccessTable)
-    print(finalStatsObj)
+    # print(finalStatsObj)
     return finalStatsObj
 
 def cleanTable(dirtyTable):
@@ -50,33 +50,53 @@ def combineUnitStats(applicantData, successData):
     for row in applicantData:
         for i in range(len(row)):
             if applicantIndex == 0:
-                if row[i] and row[i].isnumeric():
+                if row[i] and row[i].isnumeric() and int(row[i]) != 1:
                     obj = {
                         'resident': {
-                            'applicants': row[i+2],
+                            'applicants': row[i+1],
                             'success': 0
                         },
                         'nonResident': {
-                            'applicants': row[i+3],
+                            'applicants': row[i+2],
                             'success': 0
                         }
                     }
-                    combinedData[row[i+1]] = obj    
+                    combinedData[row[i]] = obj
+                    applicantIndex +=1 
                     break
-        
-            if row[i] and row[i].isnumeric():
-                obj = obj = {
-                    'resident': {
-                        'applicants': row[i+1],
-                        'success': 0
-                    },
-                    'nonResident': {
-                        'applicants': row[i+2],
-                        'success': 0
+            elif applicantIndex == (len(applicantData)-1):
+                if row[i] and row[i].isnumeric():
+                    rowInt = int(row[i])
+                    print('=====================', rowInt)
+                    if rowInt < 10:
+                        obj = {
+                            'resident': {
+                                'applicants': row[i+1],
+                                'success': 0
+                            },
+                            'nonResident': {
+                                'applicants': row[i+2],
+                                'success': 0
+                            }
+                        }
+                        combinedData[row[i]] = obj
+                        applicantIndex +=1
+                        break
+            else:
+                if row[i] and row[i].isnumeric():
+                    obj = {
+                        'resident': {
+                            'applicants': row[i+1],
+                            'success': 0
+                        },
+                        'nonResident': {
+                            'applicants': row[i+2],
+                            'success': 0
+                        }
                     }
-                }
-                combinedData[row[i+1]] = obj
-                break
+                    combinedData[row[i]] = obj
+                    applicantIndex +=1
+                    break
         #if 0 index, check if there is a one
         # if last index, check if it is a total row
         # ie get last value and if it's greater then omit data
@@ -95,37 +115,17 @@ for table in allTables:
     tableData = table.data
 
     if 'Pre-Draw Applicants' in tableHeader:
-        # print('Pre Draw Table', tableData)
         applicantData = tableData
 
-        # logic for setting data
-        
-        print(currentCode)
         elkDataObj = getUnitStats(applicantData, successData)
         allElkData[currentCode] = elkDataObj
         currentHuntIndex += 1
         applicantData = ''
         successData = ''
 
-        # print(tableData)
     elif 'Post-Draw Successful' in tableHeader:
-        # print(tableData)
-        # print('Post Draw Table', tableData)
-        # print(currentCode)
         successData = tableData
-        # get applicant data
-        # get success data
-        # pass them to the above 
-        #if tableInclude
-# design for resuability for different species
 
-# go through each page
-# look for elk code
-# if there is an elk code
-# go through the steps of recording the data from the page
-# if there is no elk code
-# go on
-# extractDataFromTables()
-print('ALL ELK DATA: ', allElkData)
+
 with open("elk-final-stats.json", "w") as outfile:
     json.dump(allElkData, outfile)

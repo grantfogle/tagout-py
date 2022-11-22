@@ -106,7 +106,7 @@ for table in allTables:
     sameUnit = True
     huntIndex = 0
     # print(table.data)
-    if 'Pre-Draw Applicants' in table.data[0][0]:
+    if 'Pre-Draw Applicants' in table.data[0][0] and huntIndex == 'EE001E1R':
         #get data
         preDrawData = breakoutApplicantData(table.data)
         preDrawJson.append(preDrawData)
@@ -114,7 +114,7 @@ for table in allTables:
         # for row in table.data:
         #     print(row)
         sameUnit = True
-    elif 'Post-Draw Successful' in table.data[0][0]:
+    elif 'Post-Draw Successful' in table.data[0][0] and huntIndex == 'EE001E1R':
         # print(table.df)
         postDrawData = breakoutSuccessData(table.data)
         postDrawJson.append(postDrawData)
