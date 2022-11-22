@@ -47,6 +47,7 @@ def combineUnitStats(applicantData, successData):
     lastSuccessPrefPoint = 0
     successIndex = 0
     # iterate through list of applicant datas
+    print('SUCCESS DATA ========', successData)
     for row in applicantData:
         for i in range(len(row)):
             if applicantIndex == 0:
@@ -67,7 +68,6 @@ def combineUnitStats(applicantData, successData):
             elif applicantIndex == (len(applicantData)-1):
                 if row[i] and row[i].isnumeric():
                     rowInt = int(row[i])
-                    print('=====================', rowInt)
                     if rowInt < 10:
                         obj = {
                             'resident': {
@@ -101,6 +101,28 @@ def combineUnitStats(applicantData, successData):
         # if last index, check if it is a total row
         # ie get last value and if it's greater then omit data
         # assign applicant and success data, default to 0 success data
+    for row in successData:
+        for i in range(len(row)):
+            if successIndex == 0:
+                if row[i] and row[i].isnumeric() and row[i] in combinedData:
+                    combinedData[row[i]]['resident']['success'] = row[i+1]
+                    combinedData[row[i]]['nonResident']['success'] = row[i+2]
+                    successIndex +=1 
+                    break
+            elif successIndex == (len(successData) - 1):
+                if row[i] and row[i].isnumeric() and row[i] in combinedData:
+                    rowInt = int(row[i])
+                    if rowInt < 10:
+                        combinedData[row[i]]['resident']['success'] = row[i+1]
+                        combinedData[row[i]]['nonResident']['success'] = row[i+2]
+                        successIndex +=1 
+                        break
+            else:
+                if row[i] and row[i].isnumeric() and row[i] in combinedData:
+                    combinedData[row[i]]['resident']['success'] = row[i+1]
+                    combinedData[row[i]]['nonResident']['success'] = row[i+2]
+                    successIndex +=1 
+                    break
     # for row in successData:
         # first index check if one
         # check last index
