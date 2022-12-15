@@ -1,1 +1,1254 @@
-{"EE001E1R": {"27": {"resident": {"applicants": "-", "success": 0}, "nonResident": {"applicants": "2", "success": 0}}, "26": {"resident": {"applicants": "2", "success": 0}, "nonResident": {"applicants": "3", "success": 0}}, "25": {"resident": {"applicants": "-", "success": 0}, "nonResident": {"applicants": "2", "success": 0}}, "24": {"resident": {"applicants": "-", "success": 0}, "nonResident": {"applicants": "1", "success": 0}}, "23": {"resident": {"applicants": "-", "success": 0}, "nonResident": {"applicants": "1", "success": 0}}, "22": {"resident": {"applicants": "-", "success": 0}, "nonResident": {"applicants": "5", "success": 0}}, "21": {"resident": {"applicants": "2", "success": 0}, "nonResident": {"applicants": "1", "success": 0}}, "20": {"resident": {"applicants": "4", "success": 0}, "nonResident": {"applicants": "2", "success": 0}}, "19": {"resident": {"applicants": "2", "success": 0}, "nonResident": {"applicants": "2", "success": 0}}, "18": {"resident": {"applicants": "8", "success": 0}, "nonResident": {"applicants": "1", "success": 0}}, "17": {"resident": {"applicants": "2", "success": 0}, "nonResident": {"applicants": "1", "success": 0}}, "16": {"resident": {"applicants": "3", "success": 0}, "nonResident": {"applicants": "3", "success": 0}}, "15": {"resident": {"applicants": "5", "success": 0}, "nonResident": {"applicants": "2", "success": 0}}, "14": {"resident": {"applicants": "6", "success": 0}, "nonResident": {"applicants": "1", "success": 0}}, "13": {"resident": {"applicants": "4", "success": 0}, "nonResident": {"applicants": "3", "success": 0}}, "12": {"resident": {"applicants": "5", "success": 0}, "nonResident": {"applicants": "1", "success": 0}}, "11": {"resident": {"applicants": "5", "success": 0}, "nonResident": {"applicants": "3", "success": 0}}, "10": {"resident": {"applicants": "5", "success": 0}, "nonResident": {"applicants": "2", "success": 0}}, "9": {"resident": {"applicants": "6", "success": 0}, "nonResident": {"applicants": "2", "success": 0}}, "8": {"resident": {"applicants": "14", "success": 0}, "nonResident": {"applicants": "3", "success": 0}}, "7": {"resident": {"applicants": "6", "success": 0}, "nonResident": {"applicants": "4", "success": 0}}, "6": {"resident": {"applicants": "10", "success": 0}, "nonResident": {"applicants": "6", "success": 0}}, "5": {"resident": {"applicants": "14", "success": 0}, "nonResident": {"applicants": "3", "success": 0}}, "4": {"resident": {"applicants": "11", "success": 0}, "nonResident": {"applicants": "6", "success": 0}}, "3": {"resident": {"applicants": "14", "success": 0}, "nonResident": {"applicants": "14", "success": 0}}, "2": {"resident": {"applicants": "13", "success": 0}, "nonResident": {"applicants": "11", "success": 0}}}, "EE001O1A": {"17": {"resident": {"applicants": "1", "success": 0}, "nonResident": {"applicants": "-", "success": 0}}, "16": {"resident": {"applicants": "1", "success": 0}, "nonResident": {"applicants": "1", "success": 0}}, "15": {"resident": {"applicants": "3", "success": 0}, "nonResident": {"applicants": "-", "success": 0}}, "14": {"resident": {"applicants": "1", "success": 0}, "nonResident": {"applicants": "-", "success": 0}}, "13": {"resident": {"applicants": "3", "success": 0}, "nonResident": {"applicants": "-", "success": 0}}, "12": {"resident": {"applicants": "1", "success": 0}, "nonResident": {"applicants": "1", "success": 0}}, "11": {"resident": {"applicants": "3", "success": 0}, "nonResident": {"applicants": "-", "success": 0}}, "10": {"resident": {"applicants": "-", "success": 0}, "nonResident": {"applicants": "-", "success": 0}}, "9": {"resident": {"applicants": "3", "success": 0}, "nonResident": {"applicants": "-", "success": 0}}, "8": {"resident": {"applicants": "1", "success": 0}, "nonResident": {"applicants": "-", "success": 0}}, "7": {"resident": {"applicants": "1", "success": 0}, "nonResident": {"applicants": "1", "success": 0}}, "6": {"resident": {"applicants": "1", "success": 0}, "nonResident": {"applicants": "3", "success": 0}}, "5": {"resident": {"applicants": "4", "success": 0}, "nonResident": {"applicants": "0", "success": 0}}, "4": {"resident": {"applicants": "4", "success": 0}, "nonResident": {"applicants": "4", "success": 0}}, "3": {"resident": {"applicants": "9", "success": 0}, "nonResident": {"applicants": "5", "success": 0}}, "2": {"resident": {"applicants": "4", "success": 0}, "nonResident": {"applicants": "6", "success": 0}}, "1": {"resident": {"applicants": "14", "success": 0}, "nonResident": {"applicants": "13", "success": 0}}, "0": {"resident": {"applicants": "14", "success": 0}, "nonResident": {"applicants": "15", "success": 0}}}, "EE002E1R": {"28": {"resident": {"applicants": "-", "success": 0}, "nonResident": {"applicants": "23", "success": 0}}, "27": {"resident": {"applicants": "-", "success": 0}, "nonResident": {"applicants": "17", "success": 0}}, "26": {"resident": {"applicants": "6", "success": 0}, "nonResident": {"applicants": "15", "success": 0}}, "25": {"resident": {"applicants": "7", "success": 0}, "nonResident": {"applicants": "18", "success": 0}}, "24": {"resident": {"applicants": "27", "success": 0}, "nonResident": {"applicants": "14", "success": 0}}, "23": {"resident": {"applicants": "24", "success": 0}, "nonResident": {"applicants": "15", "success": 0}}, "22": {"resident": {"applicants": "25", "success": 0}, "nonResident": {"applicants": "11", "success": 0}}, "21": {"resident": {"applicants": "34", "success": 0}, "nonResident": {"applicants": "17", "success": 0}}, "20": {"resident": {"applicants": "35", "success": 0}, "nonResident": {"applicants": "12", "success": 0}}, "19": {"resident": {"applicants": "32", "success": 0}, "nonResident": {"applicants": "10", "success": 0}}, "18": {"resident": {"applicants": "32", "success": 0}, "nonResident": {"applicants": "6", "success": 0}}, "17": {"resident": {"applicants": "22", "success": 0}, "nonResident": {"applicants": "8", "success": 0}}, "16": {"resident": {"applicants": "25", "success": 0}, "nonResident": {"applicants": "14", "success": 0}}, "15": {"resident": {"applicants": "41", "success": 0}, "nonResident": {"applicants": "10", "success": 0}}, "14": {"resident": {"applicants": "44", "success": 0}, "nonResident": {"applicants": "18", "success": 0}}, "13": {"resident": {"applicants": "35", "success": 0}, "nonResident": {"applicants": "11", "success": 0}}, "12": {"resident": {"applicants": "34", "success": 0}, "nonResident": {"applicants": "17", "success": 0}}, "11": {"resident": {"applicants": "49", "success": 0}, "nonResident": {"applicants": "10", "success": 0}}, "10": {"resident": {"applicants": "43", "success": 0}, "nonResident": {"applicants": "10", "success": 0}}, "9": {"resident": {"applicants": "60", "success": 0}, "nonResident": {"applicants": "13", "success": 0}}, "8": {"resident": {"applicants": "57", "success": 0}, "nonResident": {"applicants": "15", "success": 0}}, "7": {"resident": {"applicants": "66", "success": 0}, "nonResident": {"applicants": "16", "success": 0}}, "6": {"resident": {"applicants": "73", "success": 0}, "nonResident": {"applicants": "14", "success": 0}}, "5": {"resident": {"applicants": "67", "success": 0}, "nonResident": {"applicants": "19", "success": 0}}, "4": {"resident": {"applicants": "49", "success": 0}, "nonResident": {"applicants": "15", "success": 0}}, "3": {"resident": {"applicants": "61", "success": 0}, "nonResident": {"applicants": "24", "success": 0}}, "2": {"resident": {"applicants": "64", "success": 0}, "nonResident": {"applicants": "27", "success": 0}}}, "EE002O1A": {"27": {"resident": {"applicants": "-", "success": 0}, "nonResident": {"applicants": "3", "success": 0}}, "26": {"resident": {"applicants": "1", "success": 0}, "nonResident": {"applicants": "2", "success": 0}}, "25": {"resident": {"applicants": "-", "success": 0}, "nonResident": {"applicants": "2", "success": 0}}, "24": {"resident": {"applicants": "1", "success": 0}, "nonResident": {"applicants": "1", "success": 0}}, "23": {"resident": {"applicants": "2", "success": 0}, "nonResident": {"applicants": "4", "success": 0}}, "22": {"resident": {"applicants": "11", "success": 0}, "nonResident": {"applicants": "3", "success": 0}}, "21": {"resident": {"applicants": "9", "success": 0}, "nonResident": {"applicants": "2", "success": 0}}, "20": {"resident": {"applicants": "2", "success": 0}, "nonResident": {"applicants": "4", "success": 0}}, "19": {"resident": {"applicants": "9", "success": 0}, "nonResident": {"applicants": "3", "success": 0}}, "18": {"resident": {"applicants": "7", "success": 0}, "nonResident": {"applicants": "-", "success": 0}}, "17": {"resident": {"applicants": "7", "success": 0}, "nonResident": {"applicants": "2", "success": 0}}, "16": {"resident": {"applicants": "8", "success": 0}, "nonResident": {"applicants": "3", "success": 0}}, "15": {"resident": {"applicants": "8", "success": 0}, "nonResident": {"applicants": "2", "success": 0}}, "14": {"resident": {"applicants": "4", "success": 0}, "nonResident": {"applicants": "2", "success": 0}}, "13": {"resident": {"applicants": "8", "success": 0}, "nonResident": {"applicants": "2", "success": 0}}, "12": {"resident": {"applicants": "12", "success": 0}, "nonResident": {"applicants": "3", "success": 0}}, "11": {"resident": {"applicants": "11", "success": 0}, "nonResident": {"applicants": "1", "success": 0}}, "10": {"resident": {"applicants": "10", "success": 0}, "nonResident": {"applicants": "3", "success": 0}}, "9": {"resident": {"applicants": "12", "success": 0}, "nonResident": {"applicants": "1", "success": 0}}, "8": {"resident": {"applicants": "18", "success": 0}, "nonResident": {"applicants": "6", "success": 0}}, "7": {"resident": {"applicants": "12", "success": 0}, "nonResident": {"applicants": "3", "success": 0}}, "6": {"resident": {"applicants": "16", "success": 0}, "nonResident": {"applicants": "6", "success": 0}}, "5": {"resident": {"applicants": "13", "success": 0}, "nonResident": {"applicants": "4", "success": 0}}, "4": {"resident": {"applicants": "20", "success": 0}, "nonResident": {"applicants": "12", "success": 0}}, "3": {"resident": {"applicants": "23", "success": 0}, "nonResident": {"applicants": "23", "success": 0}}, "2": {"resident": {"applicants": "22", "success": 0}, "nonResident": {"applicants": "30", "success": 0}}, "1": {"resident": {"applicants": "27", "success": 0}, "nonResident": {"applicants": "35", "success": 0}}}, "EE003O1M": {"7": {"resident": {"applicants": "1", "success": 0}, "nonResident": {"applicants": "-", "success": 0}}, "6": {"resident": {"applicants": "-", "success": 0}, "nonResident": {"applicants": "-", "success": 0}}, "5": {"resident": {"applicants": "-", "success": 0}, "nonResident": {"applicants": "1", "success": 0}}, "4": {"resident": {"applicants": "-", "success": 0}, "nonResident": {"applicants": "1", "success": 0}}, "3": {"resident": {"applicants": "-", "success": 0}, "nonResident": {"applicants": "-", "success": 0}}, "2": {"resident": {"applicants": "3", "success": 0}, "nonResident": {"applicants": "-", "success": 0}}, "1": {"resident": {"applicants": "5", "success": 0}, "nonResident": {"applicants": "-", "success": 0}}, "0": {"resident": {"applicants": "16", "success": 0}, "nonResident": {"applicants": "4", "success": 0}}}, "EE003O1R": {"17": {"resident": {"applicants": "1", "success": 0}, "nonResident": {"applicants": "-", "success": 0}}, "16": {"resident": {"applicants": "-", "success": 0}, "nonResident": {"applicants": "-", "success": 0}}, "15": {"resident": {"applicants": "-", "success": 0}, "nonResident": {"applicants": "-", "success": 0}}, "14": {"resident": {"applicants": "-", "success": 0}, "nonResident": {"applicants": "-", "success": 0}}, "13": {"resident": {"applicants": "-", "success": 0}, "nonResident": {"applicants": "1", "success": 0}}, "12": {"resident": {"applicants": "1", "success": 0}, "nonResident": {"applicants": "-", "success": 0}}, "11": {"resident": {"applicants": "-", "success": 0}, "nonResident": {"applicants": "-", "success": 0}}, "10": {"resident": {"applicants": "-", "success": 0}, "nonResident": {"applicants": "2", "success": 0}}, "9": {"resident": {"applicants": "-", "success": 0}, "nonResident": {"applicants": "2", "success": 0}}, "8": {"resident": {"applicants": "2", "success": 0}, "nonResident": {"applicants": "3", "success": 0}}, "7": {"resident": {"applicants": "2", "success": 0}, "nonResident": {"applicants": "4", "success": 0}}, "6": {"resident": {"applicants": "-", "success": 0}, "nonResident": {"applicants": "4", "success": 0}}, "5": {"resident": {"applicants": "1", "success": 0}, "nonResident": {"applicants": "1", "success": 0}}, "4": {"resident": {"applicants": "3", "success": 0}, "nonResident": {"applicants": "9", "success": 0}}, "3": {"resident": {"applicants": "22", "success": 0}, "nonResident": {"applicants": "33", "success": 0}}, "2": {"resident": {"applicants": "44", "success": 0}, "nonResident": {"applicants": "72", "success": 0}}, "1": {"resident": {"applicants": "503", "success": 0}, "nonResident": {"applicants": "421", "success": 0}}, "0": {"resident": {"applicants": "839", "success": 0}, "nonResident": {"applicants": "560", "success": 0}}, "1418": {"resident": {"applicants": "1112", "success": 0}, "nonResident": {"applicants": "176", "success": 0}}}}
+{
+    "EE001E1R": {
+        "27": {
+            "resident": {
+                "applicants": "-",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "2",
+                "success": "-"
+            }
+        },
+        "26": {
+            "resident": {
+                "applicants": "2",
+                "success": "2"
+            },
+            "nonResident": {
+                "applicants": "3",
+                "success": "-"
+            }
+        },
+        "25": {
+            "resident": {
+                "applicants": "-",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "2",
+                "success": "-"
+            }
+        },
+        "24": {
+            "resident": {
+                "applicants": "-",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "1",
+                "success": "-"
+            }
+        },
+        "23": {
+            "resident": {
+                "applicants": "-",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "1",
+                "success": "-"
+            }
+        },
+        "22": {
+            "resident": {
+                "applicants": "-",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "5",
+                "success": "-"
+            }
+        },
+        "21": {
+            "resident": {
+                "applicants": "2",
+                "success": "2"
+            },
+            "nonResident": {
+                "applicants": "1",
+                "success": "-"
+            }
+        },
+        "20": {
+            "resident": {
+                "applicants": "4",
+                "success": "2"
+            },
+            "nonResident": {
+                "applicants": "2",
+                "success": "-"
+            }
+        },
+        "19": {
+            "resident": {
+                "applicants": "2",
+                "success": "1"
+            },
+            "nonResident": {
+                "applicants": "2",
+                "success": "-"
+            }
+        },
+        "18": {
+            "resident": {
+                "applicants": "8",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "1",
+                "success": "-"
+            }
+        },
+        "17": {
+            "resident": {
+                "applicants": "2",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "1",
+                "success": "-"
+            }
+        },
+        "16": {
+            "resident": {
+                "applicants": "3",
+                "success": "1"
+            },
+            "nonResident": {
+                "applicants": "3",
+                "success": "-"
+            }
+        },
+        "15": {
+            "resident": {
+                "applicants": "5",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "2",
+                "success": "-"
+            }
+        },
+        "14": {
+            "resident": {
+                "applicants": "6",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "1",
+                "success": "-"
+            }
+        },
+        "13": {
+            "resident": {
+                "applicants": "4",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "3",
+                "success": "-"
+            }
+        },
+        "12": {
+            "resident": {
+                "applicants": "5",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "1",
+                "success": "-"
+            }
+        },
+        "11": {
+            "resident": {
+                "applicants": "5",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "3",
+                "success": "-"
+            }
+        },
+        "10": {
+            "resident": {
+                "applicants": "5",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "2",
+                "success": "-"
+            }
+        },
+        "9": {
+            "resident": {
+                "applicants": "6",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "2",
+                "success": "-"
+            }
+        },
+        "8": {
+            "resident": {
+                "applicants": "14",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "3",
+                "success": "-"
+            }
+        },
+        "7": {
+            "resident": {
+                "applicants": "6",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "4",
+                "success": "-"
+            }
+        },
+        "6": {
+            "resident": {
+                "applicants": "10",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "6",
+                "success": "-"
+            }
+        },
+        "5": {
+            "resident": {
+                "applicants": "14",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "3",
+                "success": "-"
+            }
+        },
+        "4": {
+            "resident": {
+                "applicants": "11",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "6",
+                "success": "-"
+            }
+        },
+        "3": {
+            "resident": {
+                "applicants": "14",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "14",
+                "success": "-"
+            }
+        },
+        "2": {
+            "resident": {
+                "applicants": "13",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "11",
+                "success": "-"
+            }
+        }
+    },
+    "EE001O1A": {
+        "17": {
+            "resident": {
+                "applicants": "1",
+                "success": 0
+            },
+            "nonResident": {
+                "applicants": "-",
+                "success": 0
+            }
+        },
+        "16": {
+            "resident": {
+                "applicants": "1",
+                "success": "1"
+            },
+            "nonResident": {
+                "applicants": "1",
+                "success": "-"
+            }
+        },
+        "15": {
+            "resident": {
+                "applicants": "3",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "-",
+                "success": "-"
+            }
+        },
+        "14": {
+            "resident": {
+                "applicants": "1",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "-",
+                "success": "-"
+            }
+        },
+        "13": {
+            "resident": {
+                "applicants": "3",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "-",
+                "success": "-"
+            }
+        },
+        "12": {
+            "resident": {
+                "applicants": "1",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "1",
+                "success": "-"
+            }
+        },
+        "11": {
+            "resident": {
+                "applicants": "3",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "-",
+                "success": "-"
+            }
+        },
+        "10": {
+            "resident": {
+                "applicants": "-",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "-",
+                "success": "-"
+            }
+        },
+        "9": {
+            "resident": {
+                "applicants": "3",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "-",
+                "success": "-"
+            }
+        },
+        "8": {
+            "resident": {
+                "applicants": "1",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "-",
+                "success": "-"
+            }
+        },
+        "7": {
+            "resident": {
+                "applicants": "1",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "1",
+                "success": "-"
+            }
+        },
+        "6": {
+            "resident": {
+                "applicants": "1",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "3",
+                "success": "-"
+            }
+        },
+        "5": {
+            "resident": {
+                "applicants": "4",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "-",
+                "success": "-"
+            }
+        },
+        "4": {
+            "resident": {
+                "applicants": "4",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "4",
+                "success": "-"
+            }
+        },
+        "3": {
+            "resident": {
+                "applicants": "9",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "5",
+                "success": "-"
+            }
+        },
+        "2": {
+            "resident": {
+                "applicants": "4",
+                "success": "0"
+            },
+            "nonResident": {
+                "applicants": "6",
+                "success": "0"
+            }
+        },
+        "1": {
+            "resident": {
+                "applicants": "14",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "13",
+                "success": "-"
+            }
+        },
+        "0": {
+            "resident": {
+                "applicants": "14",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "15",
+                "success": "-"
+            }
+        }
+    },
+    "EE002E1R": {
+        "28": {
+            "resident": {
+                "applicants": "-",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "23",
+                "success": "-"
+            }
+        },
+        "27": {
+            "resident": {
+                "applicants": "-",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "17",
+                "success": "-"
+            }
+        },
+        "26": {
+            "resident": {
+                "applicants": "6",
+                "success": "6"
+            },
+            "nonResident": {
+                "applicants": "15",
+                "success": "-"
+            }
+        },
+        "25": {
+            "resident": {
+                "applicants": "7",
+                "success": "6"
+            },
+            "nonResident": {
+                "applicants": "18",
+                "success": "-"
+            }
+        },
+        "24": {
+            "resident": {
+                "applicants": "27",
+                "success": "4"
+            },
+            "nonResident": {
+                "applicants": "14",
+                "success": "-"
+            }
+        },
+        "23": {
+            "resident": {
+                "applicants": "24",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "15",
+                "success": "-"
+            }
+        },
+        "22": {
+            "resident": {
+                "applicants": "25",
+                "success": "1"
+            },
+            "nonResident": {
+                "applicants": "11",
+                "success": "-"
+            }
+        },
+        "21": {
+            "resident": {
+                "applicants": "34",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "17",
+                "success": "-"
+            }
+        },
+        "20": {
+            "resident": {
+                "applicants": "35",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "12",
+                "success": "-"
+            }
+        },
+        "19": {
+            "resident": {
+                "applicants": "32",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "10",
+                "success": "-"
+            }
+        },
+        "18": {
+            "resident": {
+                "applicants": "32",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "6",
+                "success": "-"
+            }
+        },
+        "17": {
+            "resident": {
+                "applicants": "22",
+                "success": "1"
+            },
+            "nonResident": {
+                "applicants": "8",
+                "success": "-"
+            }
+        },
+        "16": {
+            "resident": {
+                "applicants": "25",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "14",
+                "success": "-"
+            }
+        },
+        "15": {
+            "resident": {
+                "applicants": "41",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "10",
+                "success": "-"
+            }
+        },
+        "14": {
+            "resident": {
+                "applicants": "44",
+                "success": "1"
+            },
+            "nonResident": {
+                "applicants": "18",
+                "success": "-"
+            }
+        },
+        "13": {
+            "resident": {
+                "applicants": "35",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "11",
+                "success": "-"
+            }
+        },
+        "12": {
+            "resident": {
+                "applicants": "34",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "17",
+                "success": "-"
+            }
+        },
+        "11": {
+            "resident": {
+                "applicants": "49",
+                "success": "1"
+            },
+            "nonResident": {
+                "applicants": "10",
+                "success": "-"
+            }
+        },
+        "10": {
+            "resident": {
+                "applicants": "43",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "10",
+                "success": "-"
+            }
+        },
+        "9": {
+            "resident": {
+                "applicants": "60",
+                "success": "1"
+            },
+            "nonResident": {
+                "applicants": "13",
+                "success": "-"
+            }
+        },
+        "8": {
+            "resident": {
+                "applicants": "57",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "15",
+                "success": "-"
+            }
+        },
+        "7": {
+            "resident": {
+                "applicants": "66",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "16",
+                "success": "-"
+            }
+        },
+        "6": {
+            "resident": {
+                "applicants": "73",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "14",
+                "success": "-"
+            }
+        },
+        "5": {
+            "resident": {
+                "applicants": "67",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "19",
+                "success": "-"
+            }
+        },
+        "4": {
+            "resident": {
+                "applicants": "49",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "15",
+                "success": "-"
+            }
+        },
+        "3": {
+            "resident": {
+                "applicants": "61",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "24",
+                "success": "-"
+            }
+        },
+        "2": {
+            "resident": {
+                "applicants": "64",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "27",
+                "success": "-"
+            }
+        }
+    },
+    "EE002O1A": {
+        "27": {
+            "resident": {
+                "applicants": "-",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "3",
+                "success": "-"
+            }
+        },
+        "26": {
+            "resident": {
+                "applicants": "1",
+                "success": "1"
+            },
+            "nonResident": {
+                "applicants": "2",
+                "success": "-"
+            }
+        },
+        "25": {
+            "resident": {
+                "applicants": "-",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "2",
+                "success": "-"
+            }
+        },
+        "24": {
+            "resident": {
+                "applicants": "1",
+                "success": "1"
+            },
+            "nonResident": {
+                "applicants": "1",
+                "success": "-"
+            }
+        },
+        "23": {
+            "resident": {
+                "applicants": "2",
+                "success": "2"
+            },
+            "nonResident": {
+                "applicants": "4",
+                "success": "-"
+            }
+        },
+        "22": {
+            "resident": {
+                "applicants": "11",
+                "success": "2"
+            },
+            "nonResident": {
+                "applicants": "3",
+                "success": "-"
+            }
+        },
+        "21": {
+            "resident": {
+                "applicants": "9",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "2",
+                "success": "-"
+            }
+        },
+        "20": {
+            "resident": {
+                "applicants": "2",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "4",
+                "success": "-"
+            }
+        },
+        "19": {
+            "resident": {
+                "applicants": "9",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "3",
+                "success": "-"
+            }
+        },
+        "18": {
+            "resident": {
+                "applicants": "7",
+                "success": "1"
+            },
+            "nonResident": {
+                "applicants": "-",
+                "success": "-"
+            }
+        },
+        "17": {
+            "resident": {
+                "applicants": "7",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "2",
+                "success": "-"
+            }
+        },
+        "16": {
+            "resident": {
+                "applicants": "8",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "3",
+                "success": "-"
+            }
+        },
+        "15": {
+            "resident": {
+                "applicants": "8",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "2",
+                "success": "-"
+            }
+        },
+        "14": {
+            "resident": {
+                "applicants": "4",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "2",
+                "success": "-"
+            }
+        },
+        "13": {
+            "resident": {
+                "applicants": "8",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "2",
+                "success": "-"
+            }
+        },
+        "12": {
+            "resident": {
+                "applicants": "12",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "3",
+                "success": "-"
+            }
+        },
+        "11": {
+            "resident": {
+                "applicants": "11",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "1",
+                "success": "-"
+            }
+        },
+        "10": {
+            "resident": {
+                "applicants": "10",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "3",
+                "success": "-"
+            }
+        },
+        "9": {
+            "resident": {
+                "applicants": "12",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "1",
+                "success": "-"
+            }
+        },
+        "8": {
+            "resident": {
+                "applicants": "18",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "6",
+                "success": "-"
+            }
+        },
+        "7": {
+            "resident": {
+                "applicants": "12",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "3",
+                "success": "-"
+            }
+        },
+        "6": {
+            "resident": {
+                "applicants": "16",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "6",
+                "success": "-"
+            }
+        },
+        "5": {
+            "resident": {
+                "applicants": "13",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "4",
+                "success": "-"
+            }
+        },
+        "4": {
+            "resident": {
+                "applicants": "20",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "12",
+                "success": "-"
+            }
+        },
+        "3": {
+            "resident": {
+                "applicants": "23",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "23",
+                "success": "-"
+            }
+        },
+        "2": {
+            "resident": {
+                "applicants": "22",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "30",
+                "success": "-"
+            }
+        },
+        "1": {
+            "resident": {
+                "applicants": "27",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "35",
+                "success": "-"
+            }
+        }
+    },
+    "EE003O1M": {
+        "7": {
+            "resident": {
+                "applicants": "1",
+                "success": 0
+            },
+            "nonResident": {
+                "applicants": "-",
+                "success": 0
+            }
+        },
+        "6": {
+            "resident": {
+                "applicants": "-",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "-",
+                "success": "-"
+            }
+        },
+        "5": {
+            "resident": {
+                "applicants": "-",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "1",
+                "success": "1"
+            }
+        },
+        "4": {
+            "resident": {
+                "applicants": "-",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "1",
+                "success": "1"
+            }
+        },
+        "3": {
+            "resident": {
+                "applicants": "-",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "-",
+                "success": "-"
+            }
+        },
+        "2": {
+            "resident": {
+                "applicants": "3",
+                "success": "3"
+            },
+            "nonResident": {
+                "applicants": "-",
+                "success": "-"
+            }
+        },
+        "1": {
+            "resident": {
+                "applicants": "5",
+                "success": "4"
+            },
+            "nonResident": {
+                "applicants": "-",
+                "success": "-"
+            }
+        },
+        "0": {
+            "resident": {
+                "applicants": "16",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "4",
+                "success": "-"
+            }
+        }
+    },
+    "EE003O1R": {
+        "17": {
+            "resident": {
+                "applicants": "1",
+                "success": 0
+            },
+            "nonResident": {
+                "applicants": "-",
+                "success": 0
+            }
+        },
+        "16": {
+            "resident": {
+                "applicants": "-",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "-",
+                "success": "-"
+            }
+        },
+        "15": {
+            "resident": {
+                "applicants": "-",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "-",
+                "success": "-"
+            }
+        },
+        "14": {
+            "resident": {
+                "applicants": "-",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "-",
+                "success": "-"
+            }
+        },
+        "13": {
+            "resident": {
+                "applicants": "-",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "1",
+                "success": "-"
+            }
+        },
+        "12": {
+            "resident": {
+                "applicants": "1",
+                "success": "1"
+            },
+            "nonResident": {
+                "applicants": "-",
+                "success": "-"
+            }
+        },
+        "11": {
+            "resident": {
+                "applicants": "-",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "-",
+                "success": "-"
+            }
+        },
+        "10": {
+            "resident": {
+                "applicants": "-",
+                "success": "0"
+            },
+            "nonResident": {
+                "applicants": "2",
+                "success": "0"
+            }
+        },
+        "9": {
+            "resident": {
+                "applicants": "-",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "2",
+                "success": "2"
+            }
+        },
+        "8": {
+            "resident": {
+                "applicants": "2",
+                "success": "2"
+            },
+            "nonResident": {
+                "applicants": "3",
+                "success": "2"
+            }
+        },
+        "7": {
+            "resident": {
+                "applicants": "2",
+                "success": "1"
+            },
+            "nonResident": {
+                "applicants": "4",
+                "success": "4"
+            }
+        },
+        "6": {
+            "resident": {
+                "applicants": "-",
+                "success": "-"
+            },
+            "nonResident": {
+                "applicants": "4",
+                "success": "4"
+            }
+        },
+        "5": {
+            "resident": {
+                "applicants": "1",
+                "success": "1"
+            },
+            "nonResident": {
+                "applicants": "1",
+                "success": "1"
+            }
+        },
+        "4": {
+            "resident": {
+                "applicants": "3",
+                "success": "3"
+            },
+            "nonResident": {
+                "applicants": "9",
+                "success": "9"
+            }
+        },
+        "3": {
+            "resident": {
+                "applicants": "22",
+                "success": "20"
+            },
+            "nonResident": {
+                "applicants": "33",
+                "success": "26"
+            }
+        },
+        "2": {
+            "resident": {
+                "applicants": "44",
+                "success": "41"
+            },
+            "nonResident": {
+                "applicants": "72",
+                "success": "49"
+            }
+        },
+        "1": {
+            "resident": {
+                "applicants": "503",
+                "success": "461"
+            },
+            "nonResident": {
+                "applicants": "421",
+                "success": "241"
+            }
+        },
+        "0": {
+            "resident": {
+                "applicants": "839",
+                "success": "64"
+            },
+            "nonResident": {
+                "applicants": "560",
+                "success": "-"
+            }
+        }
+    }
+}

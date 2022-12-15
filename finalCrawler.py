@@ -2,14 +2,41 @@ import camelot
 import json
 from elkCodes import elkCodes
 
-allTables = camelot.read_pdf("../../../../2021ElkDrawRecap-1.pdf", pages="all")
+allTables = camelot.read_pdf("../../../../2021ElkDrawRecap.pdf", pages='3-50')
+# coElkDrawTablesPdf = camelot.read_pdf("../../../../2021ElkDrawRecap-1.pdf", pages="all")
+species = ['elk', 'deer', 'bear', 'antelope', 'sheep', 'goat', 'moose']
+states = ['co', 'ut', 'wy', 'id', 'nm', 'nv', 'mt']
 
 allElkData = {}
-currentHuntIndex = 0
-applicantData = ''
-successData = ''
 
 pattern = 'E[A-Z]\d\d\d[A-Z]\d[A-Z]'
+
+def fetchCoElkDrawStats(pdfTables):
+    currentHuntIndex = 0
+    applicantData = ''
+    successData = ''
+
+    for table in pdfTables:
+        currentCode = elkCodes[currentHuntIndex]
+        tableHeader = table.data[0][0]
+        tableData = table.data
+
+        if 'Pre-Draw Applicants' in tableHeader:
+            print('APPLICANTS: ', currentCode)
+            applicantData = tableData
+
+            elkDataObj = getUnitStats(applicantData, successData)
+            allElkData[currentCode] = elkDataObj
+            currentHuntIndex += 1
+            applicantData = ''
+            successData = ''
+
+        elif 'Post-Draw Successful' in tableHeader:
+            print('SUCCESSES: ', currentCode)
+            successData = tableData
+
+    with open("./output/colorado/2021-co-elk-draw-stats.json", "w") as outfile:
+        json.dump(allElkData, outfile)
 
 def getUnitStats(applicantTable, successTable):
     cleanApplicantTable = cleanTable(applicantTable)
@@ -29,6 +56,7 @@ def cleanTable(dirtyTable):
 
 def checkDataRelevant(dataRow):
     emptyRow = ['', '', '', '', '', '', '', '']
+    emptyRowSix = ['', '', '', '', '', '', '']
     if 'Pre-Draw Applicants\nChoice' in dataRow or 'Adult' in dataRow or 'Preference Points' in dataRow:
         return False
     elif 'Total Choice 1' in dataRow or 'Total Choice 2' in dataRow or 'Total Choice 3' in dataRow or 'Total Choice 4' in dataRow or 'Grand Total' in dataRow:
@@ -36,6 +64,8 @@ def checkDataRelevant(dataRow):
     elif 'Pre-Draw Applicants\nChoice\nPreference Points\n1' in dataRow or 'Res \n-' in dataRow:
         return False
     elif 'Post-Draw Successful' in dataRow  or dataRow == emptyRow or 'Post-Draw Successful\nChoice\nPreference Points\n1' in dataRow:
+        return False
+    elif 'Post-Draw Successful\nChoice\nPreference Points' in dataRow or 'Res' in dataRow or '-\n-\n-' in dataRow or dataRow == emptyRowSix:
         return False
     else:
         return True
@@ -46,12 +76,12 @@ def combineUnitStats(applicantData, successData):
     applicantIndex = 0
     lastSuccessPrefPoint = 0
     successIndex = 0
-    # iterate through list of applicant datas
-    print('SUCCESS DATA ========', successData)
+
     for row in applicantData:
         for i in range(len(row)):
             if applicantIndex == 0:
-                if row[i] and row[i].isnumeric() and int(row[i]) != 1:
+                if row[i] and row[i].isnumeric() and int(row[i]) != 1 and row[i+1] and row[i+2]:
+                    lastApplicantPrefPoint = int(row[i])
                     obj = {
                         'resident': {
                             'applicants': row[i+1],
@@ -66,7 +96,7 @@ def combineUnitStats(applicantData, successData):
                     applicantIndex +=1 
                     break
             elif applicantIndex == (len(applicantData)-1):
-                if row[i] and row[i].isnumeric():
+                if row[i] and row[i].isnumeric() and int(row[i]) < lastApplicantPrefPoint:
                     rowInt = int(row[i])
                     if rowInt < 10:
                         obj = {
@@ -83,7 +113,8 @@ def combineUnitStats(applicantData, successData):
                         applicantIndex +=1
                         break
             else:
-                if row[i] and row[i].isnumeric():
+                if row[i] and row[i].isnumeric() and int(row[i]) < lastApplicantPrefPoint:
+                    lastApplicantPrefPoint = int(row[i])
                     obj = {
                         'resident': {
                             'applicants': row[i+1],
@@ -97,57 +128,36 @@ def combineUnitStats(applicantData, successData):
                     combinedData[row[i]] = obj
                     applicantIndex +=1
                     break
-        #if 0 index, check if there is a one
-        # if last index, check if it is a total row
-        # ie get last value and if it's greater then omit data
-        # assign applicant and success data, default to 0 success data
+    
     for row in successData:
         for i in range(len(row)):
+            # firstIndex
             if successIndex == 0:
+                print(row)
                 if row[i] and row[i].isnumeric() and row[i] in combinedData:
+                    lastSuccessPrefPoint = int(row[i])
                     combinedData[row[i]]['resident']['success'] = row[i+1]
                     combinedData[row[i]]['nonResident']['success'] = row[i+2]
-                    successIndex +=1 
+                    successIndex += 1
                     break
+            # last index
             elif successIndex == (len(successData) - 1):
-                if row[i] and row[i].isnumeric() and row[i] in combinedData:
+                if row[i] and row[i].isnumeric() and row[i] in combinedData and int(row[i]) < lastSuccessPrefPoint:
                     rowInt = int(row[i])
                     if rowInt < 10:
+                        lastSuccessPrefPoint = int(row[i])
                         combinedData[row[i]]['resident']['success'] = row[i+1]
                         combinedData[row[i]]['nonResident']['success'] = row[i+2]
                         successIndex +=1 
                         break
+            # other indexes
             else:
-                if row[i] and row[i].isnumeric() and row[i] in combinedData:
+                if row[i] and row[i].isnumeric() and row[i] in combinedData and int(row[i]) < lastSuccessPrefPoint:
+                    lastSuccessPrefPoint = int(row[i])
                     combinedData[row[i]]['resident']['success'] = row[i+1]
                     combinedData[row[i]]['nonResident']['success'] = row[i+2]
                     successIndex +=1 
                     break
-    # for row in successData:
-        # first index check if one
-        # check last index
-        # print(row)
-    # then go through successData
     return combinedData
 
-
-for table in allTables:
-    currentCode = elkCodes[currentHuntIndex]
-    tableHeader = table.data[0][0]
-    tableData = table.data
-
-    if 'Pre-Draw Applicants' in tableHeader:
-        applicantData = tableData
-
-        elkDataObj = getUnitStats(applicantData, successData)
-        allElkData[currentCode] = elkDataObj
-        currentHuntIndex += 1
-        applicantData = ''
-        successData = ''
-
-    elif 'Post-Draw Successful' in tableHeader:
-        successData = tableData
-
-
-with open("elk-final-stats.json", "w") as outfile:
-    json.dump(allElkData, outfile)
+fetchCoElkDrawStats(allTables)
