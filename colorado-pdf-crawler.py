@@ -9,15 +9,22 @@ coloradoDataTables = camelot.read_pdf(coloradoMap['drawStatsInput'], pages="3-10
 # global flags for tracking edge cases
 
 def main(coDataTables):
-    unitIndex = 1
-
-    orphanedData = False
-    firstOrphanedData = False
     
-    rawUnitDataObj = {}
-    outputDataObj = {}
+    formattedDataRows = getFormattedDataRows(coDataTables)
+    outputDataObj = getOutputDataObj(formattedDataRows)
+        
+        # elif 'Total Choice 1' in tableHeader:
+        #     rawUnitDataObj[currentDrawCode]['totalChoice1'].append(table.data)
+    with open("./output/colorado/2021-co-elk-draw-stats.json", "w") as outfile:
+        json.dump(outputDataObj, outfile)
 
-    for table in coDataTables:
+# get formatted data rows
+def getFormattedDataRows(dataTables):
+    unitIndex = 1
+    rawUnitDataObj = {}
+    currentDrawCode = ''
+
+    for table in dataTables:
         tableHeader = table.data[0][0]
         tableData = table.data
 
@@ -26,10 +33,9 @@ def main(coDataTables):
             # i want to ensure that i am always using the correct index as
             # 'Post-Draw successful will always be the first table of the
             # data that i want to get
-            orphanedData = False
             currentDrawCode = elkCodes[unitIndex-1]
             unitIndex += 1
-            formattedPostDrawArr = formatPostDrawData(table.data)
+            formattedPostDrawArr = formatDrawDataArr(tableData)
 
             rawUnitDataObj[currentDrawCode] = {
                 'preDraw': [],
@@ -37,31 +43,28 @@ def main(coDataTables):
                 'totalChoice1': []
             }
             rawUnitDataObj[currentDrawCode]['postDraw'].append(formattedPostDrawArr)
-            if len(table.data) > 27:
-                orphanedData = True
-            # write logic for really big tables that have orphan tables that start with '1'
-
+                
         elif 'Pre-Draw Applicants' in tableHeader:
             #rawUnitDataObj[currentDrawCode].preDraw = table.data
-            rawUnitDataObj[currentDrawCode]['preDraw'].append(table.data)
-        
-        # elif 'Total Choice 1' in tableHeader:
-        #     rawUnitDataObj[currentDrawCode]['totalChoice1'].append(table.data)
-    with open("./output/colorado/2021-co-elk-draw-stats.json", "w") as outfile:
-        json.dump(rawUnitDataObj, outfile)
+            formattedPostDrawArr = formatDrawDataArr(tableData)
+            rawUnitDataObj[currentDrawCode]['preDraw'].append(formattedPostDrawArr)
+
+    return rawUnitDataObj
+    
 
 # assign them to obj
 
-def formatPostDrawData(postDrawArr):
+def formatDrawDataArr(postDrawArr):
     rowIndex = 0
     returnArr = []
     for row in postDrawArr:
-        if rowIndex == 0:
-            if row[1].isnumeric and len(row[1]) > 0:
-                returnArr.append(row)
-        elif isRelevantData(row):
+        # if rowIndex == 0:
+        #     if row[1].isnumeric and len(row[1]) > 0:
+        #         returnArr.append(row)
+        if hasDrawData(row):
             returnArr.append(row)
             rowIndex += 1
+
     return returnArr
 
 def formatPreDrawData(preDrawArr):
@@ -70,19 +73,21 @@ def formatPreDrawData(preDrawArr):
 def formatTotalChoiceData(totalChoiceArr):
     rowIndex = 0
 
-def isRelevantData(dataRow):
-    print(dataRow)
+def hasDrawData(dataRow):
     if isHeader(dataRow):
         return False
-    if isEmpty(dataRow):
+    elif isEmpty(dataRow):
         return False
-    return True
+    else:
+        return True
     
 
     # check if empty
     # check if header
 def isHeader(dataRow):
-    if 'Adult' in dataRow or "Res" in dataRow:
+    if 'Adult' in dataRow or "Res" in dataRow or "Res \n-" in dataRow:
+        return True
+    elif 'Pre-Draw' in dataRow[0] or 'Post-Draw' in dataRow[0]:
         return True
     return False
 
@@ -95,9 +100,7 @@ def isEmpty(dataRow):
         return True
     return False
 
-# def formatData():
-    # data to omit
-    # ['Post-Draw Successful', '', '', '', '', '', '', '']
-    #  ['', '', 'Adult', '', 'Youth', '', 'Landowner (LPP)', '']
-    #  ['Choice', 'Preference Points', 'Res', 'NonRes', 'Res', 'NonRes', 'Unrestricted', 'Restricted']
+def getOutputDataObj(formattedDataArr):
+    return formattedDataArr
+
 main(coloradoDataTables)
