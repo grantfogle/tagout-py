@@ -91,57 +91,133 @@ def getOutputDataObj(formattedDataArr):
     finalDrawData = {}
     for unit in formattedDataArr:
         finalDrawData[unit] = combinedDrawData(formattedDataArr[unit]['preDraw'], formattedDataArr[unit]['postDraw'])
-    return formattedDataArr
+    return finalDrawData
+
+def totalChoiceRow(dataRow):
+    if 'Total Choice 2' in dataRow or 'Total Choice 3' in dataRow or 'Total Choice 4' in dataRow:
+        return True
+    return False
+
+def drawDataRow(dataRow):
+    if ('Grand Total' in dataRow):
+        return False
+    if ('Total Choice 1' in dataRow):
+        return False
+    if (dataRow[1].isnumeric or dataRow[2].isnumeric()):
+        return True
+    return False
 
 def combinedDrawData(preDrawStats, postDrawStats):
     combinedDrawObj = {}
-    # example data {
-    # 28: {
-        # res:
-        #     applicants:
-        #     success:
-        # nonRes:
-        #     applicants:
-        #     success:
-    #totalChoice1
-    #totalChoice2
-    #totalChoice3
     statsRowIndex = 0
-    # passedFirstChoice = False
 
     for stats in preDrawStats:
         for data in stats:
-            # type of row
+                tempObj = {
+                    'res': {
+                        'apps': 0,
+                        'success': 0
+                    },
+                    'nonRes': {
+                        'apps': 0,
+                        'success': 0
+                    }
+                }
+                statsRowIndex += 1
+                resApps = 0
+                nonResApps = 0
+                dataLength = len(data)
+                totalChoiceBool = totalChoiceRow(data)
+                drawDataBool = drawDataRow(data)
+                if (totalChoiceBool):
+                    tempObj['res']['apps'] = int(data[3]) if data[3] != '-' else 0
+                    tempObj['nonRes']['apps'] = int(data[4]) if data[4] != '-' else 0
+                    combinedDrawObj[data[1]] = tempObj
+                if (drawDataBool and not totalChoiceBool):
+                    if dataLength == 8 and data[1] != '' and int(data[1]) >= 0:
+                        resApps = data[2].replace('\n', '')
+                        resApps = resApps.replace('-', '')
+                        nonResApps = data[3].replace('\n', '')
+                        nonResApps = nonResApps.replace('-', '')
+    
+                        tempObj['res']['apps'] = int(resApps) if resApps != '' else 0
+                        tempObj['nonRes']['apps'] = int(nonResApps) if nonResApps != '' else 0
+                        combinedDrawObj[data[1]] = tempObj
+                    elif dataLength == 9 and data[2] != '' and int(data[2]) >= 0:
+                        resApps = data[3].replace('\n', '')
+                        resApps = resApps.replace('-', '')
+                        nonResApps = data[4].replace('\n', '')
+                        nonResApps = nonResApps.replace('-', '')
+    
+                        tempObj['res']['apps'] = int(resApps) if resApps != '' else 0
+                        tempObj['nonRes']['apps'] = int(nonResApps) if nonResApps != '' else 0
+                        combinedDrawObj[data[2]] = tempObj
+
+
+    for stats in postDrawStats:
+        for data in stats:
+                statsRowIndex += 1
+                resApps = 0
+                nonResApps = 0
+                dataLength = len(data)
+                totalChoiceBool = totalChoiceRow(data)
+                drawDataBool = drawDataRow(data)
+                if (totalChoiceBool):
+                    totalChoiceStr = ''
+                    if ('Total Choice' in data[0]):
+                        totalChoiceStr = data[0]
+                    elif ('Total Choice' in data[1]):
+                        totalChoiceStr = data[1]
+                    print('this is the problem right here: ', data)
+                    combinedDrawObj[totalChoiceStr]['res']['success'] = int(data[3]) if data[3] != '-' else 0
+                    combinedDrawObj[totalChoiceStr]['nonRes']['success'] = int(data[4]) if data[4] != '-' else 0
+                if (drawDataBool and not totalChoiceBool):
+                    if dataLength == 8 and data[1] != '' and int(data[1]) >= 0:
+                        resApps = data[2].replace('\n', '')
+                        resApps = resApps.replace('-', '')
+                        nonResApps = data[3].replace('\n', '')
+                        nonResApps = nonResApps.replace('-', '')
+    
+                        combinedDrawObj[data[1]]['res']['success'] = int(resApps) if resApps != '' else 0
+                        combinedDrawObj[data[1]]['nonRes']['success'] = int(nonResApps) if nonResApps != '' else 0
+
+                    elif dataLength == 9 and data[2] != '' and int(data[2]) >= 0:
+                        resApps = data[3].replace('\n', '')
+                        resApps = resApps.replace('-', '')
+                        nonResApps = data[4].replace('\n', '')
+                        nonResApps = nonResApps.replace('-', '')
+    
+                        combinedDrawObj[data[2]]['res']['success'] = int(resApps) if resApps != '' else 0
+                        combinedDrawObj[data[2]]['nonRes']['success'] = int(nonResApps) if nonResApps != '' else 0
+
+    return combinedDrawObj
+                    # elif dataLength == 9:
+                     # CHECK LENGTH OF DATA ROW
+                    # If LENGTH 8
+                    # if (data.length == 8):
+                    #     preferencePoint = int(data[1])
+                    #     resApplicants = int(data[2])
+                    #     nonResApplicants = int(data[3])
+                    # If LENGTH 9
+                    # elif (data.length == 9):
+                    #     preferencePoint = int(data[2])
+                    #     resApplicants = int(data[3])
+                    #     nonResApplicants = int(data[4])
                 # preference point row
                 # total choice row
                 # grand total row
                 # check if bad data row, ie \
             # check first row 
             # check last row, if it is a total
-            dataRowIndex = 0
-            preferencePoint = 0
-            statsRowIndex += 1
-            resApplicants = 0
-            nonResApplicants = 0
             # all the data is in the first four or five items, 
             # let's get the reference index
             # find first data index
             # case 1st index
-
-            # CHECK LENGTH OF DATA ROW
-            # If LENGTH 8
-            if (data.length == 8):
-                preferencePoint = int(data[1])
-                resApplicants = int(data[2])
-                nonResApplicants = int(data[3])
-            # If LENGTH 9
-            elif (data.length == 9):
-                preferencePoint = int(data[2])
-                resApplicants = int(data[3])
-                nonResApplicants = int(data[4])
             
-
             # If length 10
+            # combinedDrawObj[preferencePoint] = {
+            #     res:
+            # }
 
 
 
