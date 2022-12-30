@@ -1,19 +1,15 @@
+import camelot
 import json
 from crawlerMap import colorado
-from pypdf import PdfReader
+from inputs.colorado.elkCodes import elkCodes
 
-def main():
-    index = 0
-    reader = PdfReader(colorado['elk']['harvestStatsInput'])
-    page = reader.pages
-    # pageText = page.extract_text()
-    # pageLines = pageText.splitlines()
-    finalDataObj = {}
+coloradoDataTables = camelot.read_pdf(colorado['harvestStatsInput'], pages="all")
 
-    for page in reader:
-        print(page)
+def main(dataTables):
+    for table in dataTables:
+        tableHeader = table.data[0][0]
+        tableData = table.data
+        print(tableHeader)
 
-    # with open(colorado['elk']['populationStatsOutput'], "w") as outfile:
-    #     json.dump(finalDataObj, outfile)
 
-main()
+main(coloradoDataTables)
