@@ -1,7 +1,7 @@
 import camelot
 import json
 from crawlerMap import coloradoMap
-from inputs.colorado.elkCodes import elkCodes
+from crawlers.colorado.elkCodes import elkCodes
 
 coloradoDataTables = camelot.read_pdf(coloradoMap['drawStatsInput'], pages="801-960")
 
