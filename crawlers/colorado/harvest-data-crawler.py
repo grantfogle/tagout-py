@@ -12,25 +12,22 @@ iterableObj = {
         'totalPages': 4,
     },
     'O1R': {
-        'startIndex': 59,
+        'startIndex': 21,
         'totalPages': 4,
     },
     'O2R': {
-        'startIndex': 59,
+        'startIndex': 25,
         'totalPages': 4,
     },
     'O3R': {
-        'startIndex': 59,
+        'startIndex': 29,
         'totalPages': 4,
     },
     'O4R': {
-        'startIndex': 59,
+        'startIndex': 33,
         'totalPages': 4,
     }
 }
-archeryPages = [55, 4]
-muzzleLoaderPages = [59, 62]
-riflePages = [22,36]
 finalObj = {
     'O1A': {},
     'O1M': {},
@@ -40,7 +37,6 @@ finalObj = {
     'O4R': {}
 }
 
-index = 0
 reader = PdfReader(colorado['elk']['harvestStatsInput'])
 
 # paramaters: huntCode, startIndex, pages
@@ -54,12 +50,10 @@ def getHarvestData(huntCode, startPage, pageCount):
         
         for j in range(lastHeaderIndex, len(pageLines) - 2, 1):
             dataStr = pageLines[j]
-            if (j == 6):
-                dataStr = dataStr.replace('sum ', '')
+            dataStr = dataStr.replace('sum ', '')
         
             dataArr = dataStr.split(' ')
-            if 'Total' not in dataArr:
-                # HUNT CODE
+            if 'Total' not in dataArr and 'Days' not in dataArr:
                 finalObj[huntCode][dataArr[0]] = {
                     'bulls': dataArr[1],
                     'cows': dataArr[2],
@@ -70,7 +64,7 @@ def getHarvestData(huntCode, startPage, pageCount):
                     'recDays': dataArr[7]
                 }
                 
-    print(finalObj)
+    # print(finalObj)
         ## if row has total
         ## remove sum sum sum from 
         # remove last 
@@ -82,11 +76,16 @@ def getHarvestData(huntCode, startPage, pageCount):
 
 
 def main():
-    # for key in iterableObj
-    getHarvestData('O1A', 55, 4)
-    getHarvestData('O1A', 55, 4)
-    getHarvestData('O1A', 55, 4)
-    getHarvestData('O1A', 55, 4)
+    for key in iterableObj:
+        getHarvestData(key, iterableObj[key]['startIndex'], iterableObj[key]['totalPages'])
+    # getHarvestData('O1A', 55, 4)
+    # getHarvestData('O1A', 55, 4)
+    # getHarvestData('O1A', 55, 4)
+    # getHarvestData('O1A', 55, 4)
+
+    with open("../../outputs/colorado/co-elk-harvest-stats.json", "w") as outfile:
+        json.dump(finalObj, outfile)
+
     
 
 main()
