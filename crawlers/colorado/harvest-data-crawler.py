@@ -82,6 +82,10 @@ def getHarvestData(huntCode, startPage, pageCount):
 
 
 def main():
+    # for key in iterableObj
+    getHarvestData('O1A', 55, 4)
+    getHarvestData('O1A', 55, 4)
+    getHarvestData('O1A', 55, 4)
     getHarvestData('O1A', 55, 4)
     
 
