@@ -1,6 +1,7 @@
 import json
 from crawlerMap import colorado
 from pypdf import PdfReader
+from advancedDrawStatsMappers import assignPostDrawStats
 
 reader = PdfReader(colorado['elk']['drawStatsInput'])  
 finalObj = {}
@@ -166,76 +167,88 @@ def mainTryTwo():
         enterTotalChoicePostFlow = False
         beginStatCollection = False
         # print(pageLines)
-        for text in pageLines:
-            if 'Hunt Code' in text:
-                huntCode = pageLines[textIndex + 3]
-                currentCodeMap[huntCode] = {}
-            
-            if 'Pre-Draw Applicants' in text:
-                preDrawIndex = 0
+        if unitExceededOnePage:
+            # identify what part of the collection we are in
+            # continue 1st draw choice or
+            # total choice
+            # tbh might be in the first line of text....
+            beginStatCollection = True
+            # will always be pre draw data first
+            while beginStatCollection:
                 enterPreDrawFlow = True
+
                 while enterPreDrawFlow:
-                    currentText = pageLines[textIndex + preDrawIndex]
-                    
-                    if beginStatCollection:
-                        # break out of pre draw flow
-                        if 'Post-Draw' in currentText or 'Total Choice' in currentText:
-                            enterPreDrawFlow = False
-                            beginStatCollection = False
-                        else:
-                            prefPt = currentText
-                            resApps = 0 if pageLines[textIndex + preDrawIndex + 1] == '-' else int(pageLines[textIndex + preDrawIndex + 1])
-                            nonResApps = 0 if pageLines[textIndex + preDrawIndex + 2] == '-' else int(pageLines[textIndex + preDrawIndex + 2])
-                            newObj = {
-                                'res': {
-                                    'applicants': resApps,
-                                    'success': 0
-                                },
-                                'nonRes': {
-                                    'applicants': nonResApps,
-                                    'success': 0
-                                },
-                            }
-                            currentCodeMap[huntCode][prefPt] = newObj
-                            preDrawIndex+=6
-                    
-                    if '1' in currentText and not beginStatCollection:
-                        beginStatCollection = True
-    
-                    preDrawIndex+=1
-                
-                # textIndex += preDrawIndex
-            
-            if 'Post-Draw Successful' in text:
-                enterPostDrawFlow = True
-                postDrawIndex = 0
+                    secondPageIndex = 0
 
-                while enterPostDrawFlow:
-                    currentText = pageLines[textIndex + postDrawIndex]
-                    if beginStatCollection:
-                        if 'Colorado Parks' in currentText or 'Post-Draw' in currentText:
-                            enterPostDrawFlow = False
-                            beginStatCollection = False
-                        else:
-                            prefPt = currentText
-                            resSuccess = 0 if pageLines[textIndex + postDrawIndex + 1] == '-' else int(pageLines[textIndex + postDrawIndex + 1])
-                            nonResSuccess = 0 if pageLines[textIndex + postDrawIndex + 2] == '-' else int(pageLines[textIndex + postDrawIndex + 2])
-                            currentCodeMap[huntCode][prefPt]['res']['success'] = resSuccess
-                            currentCodeMap[huntCode][prefPt]['nonRes']['success'] = nonResSuccess
-                            postDrawIndex += 6
-                        
-                    if '1' in currentText and not beginStatCollection:
-                        beginStatCollection = True
-                    
-                    postDrawIndex+=1
-
-
-            if unitExceededOnePage:
-                # will always be pre draw data first
+                if 'Grand Total' in text:
+                    beginStatCollection = False
+                    enterPreDrawFlow = False
                 print(text)
                 # continue adding stats to previous unit
+            
+        else:
+            for text in pageLines:
+                if 'Hunt Code' in text:
+                    huntCode = pageLines[textIndex + 3]
+                    currentCodeMap[huntCode] = {}
+                
+                if 'Pre-Draw Applicants' in text:
+                    preDrawIndex = 0
+                    enterPreDrawFlow = True
+                    while enterPreDrawFlow:
+                        currentText = pageLines[textIndex + preDrawIndex]
+                        
+                        if beginStatCollection:
+                            # break out of pre draw flow
+                            if 'Post-Draw' in currentText or 'Total Choice' in currentText:
+                                enterPreDrawFlow = False
+                                beginStatCollection = False
+                            else:
+                                prefPt = currentText
+                                resApps = 0 if pageLines[textIndex + preDrawIndex + 1] == '-' else int(pageLines[textIndex + preDrawIndex + 1])
+                                nonResApps = 0 if pageLines[textIndex + preDrawIndex + 2] == '-' else int(pageLines[textIndex + preDrawIndex + 2])
+                                newObj = {
+                                    'res': {
+                                        'applicants': resApps,
+                                        'success': 0
+                                    },
+                                    'nonRes': {
+                                        'applicants': nonResApps,
+                                        'success': 0
+                                    },
+                                }
+                                currentCodeMap[huntCode][prefPt] = newObj
+                                preDrawIndex+=6
+                        
+                        if '1' in currentText and not beginStatCollection:
+                            beginStatCollection = True
+        
+                        preDrawIndex+=1
+                    
+                    # textIndex += preDrawIndex
+                
+                if 'Post-Draw Successful' in text:
+                    enterPostDrawFlow = True
+                    postDrawIndex = 0
+                    drawStatsArr = []
 
-            textIndex +=1
+                    while enterPostDrawFlow:
+                        currentText = pageLines[textIndex + postDrawIndex]
+                        if beginStatCollection:
+                            if 'Colorado Parks' in currentText or 'Post-Draw' in currentText:
+                                currentCodeMap[huntCode] = assignPostDrawStats(currentCodeMap[huntCode], drawStatsArr)
+                                print('IT FINISHED')
+                                enterPostDrawFlow = False
+                                beginStatCollection = False
+                            else:
+                                drawStatsArr.append(currentText)
+                            
+                        if '1' in currentText and not beginStatCollection:
+                            beginStatCollection = True
+                        
+                        postDrawIndex+=1
+
+                textIndex +=1
 
             # print(text)
                 
