@@ -9,7 +9,9 @@ prefPointIndex = 0
 # currentPreferencePoint = 0
 
 def main():
-    for i in range(2, 4, 1):
+    for i in range(2, 15, 1):
+        allDrawDataOnOnePage = False
+
         textIndex = 0
         unitCode = ''
         currentCodeMap = {}
@@ -102,10 +104,10 @@ def main():
 
                     preDrawCounter += 1
 
-                textIndex = textIndex + preDrawCounter
+            #     textIndex = textIndex + preDrawCounter
             # if 'Post-Draw' in text:
             #     beginPostDrawStats = True
-            if checkForExtraDrawStats:
+            # if checkForExtraDrawStats:
                 
 
             # textIndex += 1
@@ -137,6 +139,142 @@ def main():
 # Total Choice 3
 # Total Choice 4
 
+def mainTryTwo():
+    huntCode = ''
+    currentCodeMap = {}
+    unitExceededOnePage = False
+
+    for i in range(2, 10, 1):
+        page = reader.pages[i]
+        pageText = page.extract_text()
+        pageLines = pageText.splitlines()
+        # print('NEW PAGE', i, pageLines[0])
+        # find out what type of page it is, either continue with logic
+        # or create new unit
+        pageType = ['new unit', 'continue unit']
+        currentPageType = pageLines[0]
+        textIndex = 0
+        if pageLines[0] == '# Drawn':
+            unitExceededOnePage = False
+        else:
+            unitExceededOnePage = True
+
+        # reset collection flows when we get to a new page
+        enterPreDrawFlow = False
+        enterPostDrawFlow = False
+        enterTotalChoicePreFlow = False
+        enterTotalChoicePostFlow = False
+        beginStatCollection = False
+        # print(pageLines)
+        for text in pageLines:
+            if 'Hunt Code' in text:
+                huntCode = pageLines[textIndex + 3]
+                currentCodeMap[huntCode] = {}
+            
+            if 'Pre-Draw Applicants' in text:
+                preDrawIndex = 0
+                enterPreDrawFlow = True
+                while enterPreDrawFlow:
+                    currentText = pageLines[textIndex + preDrawIndex]
+                    
+                    if beginStatCollection:
+                        # break out of pre draw flow
+                        if 'Post-Draw' in currentText or 'Total Choice' in currentText:
+                            enterPreDrawFlow = False
+                            beginStatCollection = False
+                        else:
+                            prefPt = currentText
+                            resApps = 0 if pageLines[textIndex + preDrawIndex + 1] == '-' else int(pageLines[textIndex + preDrawIndex + 1])
+                            nonResApps = 0 if pageLines[textIndex + preDrawIndex + 2] == '-' else int(pageLines[textIndex + preDrawIndex + 2])
+                            newObj = {
+                                'res': {
+                                    'applicants': resApps,
+                                    'success': 0
+                                },
+                                'nonRes': {
+                                    'applicants': nonResApps,
+                                    'success': 0
+                                },
+                            }
+                            currentCodeMap[huntCode][prefPt] = newObj
+                            preDrawIndex+=6
+                    
+                    if '1' in currentText and not beginStatCollection:
+                        beginStatCollection = True
+    
+                    preDrawIndex+=1
+                
+                # textIndex += preDrawIndex
+            
+            if 'Post-Draw Successful' in text:
+                enterPostDrawFlow = True
+                postDrawIndex = 0
+
+                while enterPostDrawFlow:
+                    currentText = pageLines[textIndex + postDrawIndex]
+                    if beginStatCollection:
+                        if 'Colorado Parks' in currentText or 'Post-Draw' in currentText:
+                            enterPostDrawFlow = False
+                            beginStatCollection = False
+                        else:
+                            prefPt = currentText
+                            resSuccess = 0 if pageLines[textIndex + postDrawIndex + 1] == '-' else int(pageLines[textIndex + postDrawIndex + 1])
+                            nonResSuccess = 0 if pageLines[textIndex + postDrawIndex + 2] == '-' else int(pageLines[textIndex + postDrawIndex + 2])
+                            currentCodeMap[huntCode][prefPt]['res']['success'] = resSuccess
+                            currentCodeMap[huntCode][prefPt]['nonRes']['success'] = nonResSuccess
+                            postDrawIndex += 6
+                        
+                    if '1' in currentText and not beginStatCollection:
+                        beginStatCollection = True
+                    
+                    postDrawIndex+=1
 
 
-main()
+            if unitExceededOnePage:
+                # will always be pre draw data first
+                print(text)
+                # continue adding stats to previous unit
+
+            textIndex +=1
+
+            # print(text)
+                
+                # while enterPostDrawFlow:
+                #     return
+                #     if text == '1' and not beginStatCollection:
+                #         beginStatCollection = True
+                #     # elif 'Pre-Draw' in text:
+                #     elif 'Total Choice' in text:
+                #         enterTotalChoicePostFlow = True
+                #         enterPostDrawFlow = False
+                #         beginStatCollection = False
+                #     else:
+                #         # assing draw stats to parent obj
+                #         print(text)
+                #         currentPreDrawIndex+=6
+
+                #     currentPreDrawIndex+=1
+
+                # while enterTotalChoicePreFlow:
+                    # return
+                    # if 'Total Choice' in text and not beginStatCollection:
+                    #     beginStatCollection = True
+                    # what would cause this shit to break?
+                    # else:
+                    #     print(text)
+                    #     currentPreDrawIndex+=6
+
+                # while enterTotalChoicePostFlow:
+                #     return
+                #     if 'Total Choice' in text and not beginStatCollection:
+                #         beginStatCollection = True
+                    # what would cause this shit to break?
+                    # else:
+                    #     print(text)
+                    #     currentPreDrawIndex+=6
+
+            
+            
+        # reset flags
+
+mainTryTwo()
