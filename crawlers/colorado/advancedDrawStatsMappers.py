@@ -1,27 +1,38 @@
 
-# statsObj is the currentCodeMap
+def assignPreDrawStats(statsObj, dataArr):
+    dataArrLen = len(dataArr) - 1
+    counter = 0
+    while counter < dataArrLen:
+        prefPt = dataArr[counter]
+        resApps = 0 if dataArr[counter + 1] == '-' else int(dataArr[counter + 1])
+        nonResApps = 0 if dataArr[counter + 2] == '-' else int(dataArr[counter + 2])
+        newObj = {
+            'res': {
+                'applicants': resApps,
+                'success': 0
+            },
+            'nonRes': {
+                'applicants': nonResApps,
+                'success': 0
+            },
+        }
+        statsObj[prefPt] = newObj
+        counter+=7
 
-def assignPreDrawStats(huntCode, preferencePoint, data):
-    cleanStatsObj = {}
+    return statsObj
 
-    
-
-
-    return cleanStatsObj
-    # check if first choice or total choice
-
-# statsObj is the currentCodeMap[huntCode]
 def assignPostDrawStats(statsObj, dataArr):
     dataArrLen = len(dataArr) - 1
     counter = 0
     while counter < dataArrLen:
         prefPt = dataArr[counter]
-        print(prefPt)
         resSuccess = dataArr[counter + 1]
         nonResSuccess = dataArr[counter + 2]
-        counter += 7
         statsObj[prefPt]['res']['success'] = 0 if resSuccess == '-' else int(resSuccess)
         statsObj[prefPt]['nonRes']['success'] = 0 if nonResSuccess == '-' else int(nonResSuccess)
+        counter += 7
 
-    print(statsObj)
     return statsObj
+
+# def assignTotalChoicePreDrawStats(statsObj, dataArr):
+# def assignTotalChoicePostDrawStats(statsObj, dataArr):

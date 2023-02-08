@@ -1,7 +1,7 @@
 import json
 from crawlerMap import colorado
 from pypdf import PdfReader
-from advancedDrawStatsMappers import assignPostDrawStats
+from advancedDrawStatsMappers import assignPostDrawStats, assignPreDrawStats
 
 reader = PdfReader(colorado['elk']['drawStatsInput'])  
 finalObj = {}
@@ -183,8 +183,12 @@ def mainTryTwo():
                 if 'Grand Total' in text:
                     beginStatCollection = False
                     enterPreDrawFlow = False
-                print(text)
                 # continue adding stats to previous unit
+
+                # pre draw stats
+                # post draw stats
+                # total choice pre draw stats
+                # total choice post draw stats
             
         else:
             for text in pageLines:
@@ -193,39 +197,25 @@ def mainTryTwo():
                     currentCodeMap[huntCode] = {}
                 
                 if 'Pre-Draw Applicants' in text:
-                    preDrawIndex = 0
                     enterPreDrawFlow = True
+                    preDrawIndex = 0
+                    drawStatsArr = []
+
                     while enterPreDrawFlow:
                         currentText = pageLines[textIndex + preDrawIndex]
                         
                         if beginStatCollection:
-                            # break out of pre draw flow
                             if 'Post-Draw' in currentText or 'Total Choice' in currentText:
+                                currentCodeMap[huntCode] = assignPreDrawStats(currentCodeMap[huntCode], drawStatsArr)
                                 enterPreDrawFlow = False
                                 beginStatCollection = False
                             else:
-                                prefPt = currentText
-                                resApps = 0 if pageLines[textIndex + preDrawIndex + 1] == '-' else int(pageLines[textIndex + preDrawIndex + 1])
-                                nonResApps = 0 if pageLines[textIndex + preDrawIndex + 2] == '-' else int(pageLines[textIndex + preDrawIndex + 2])
-                                newObj = {
-                                    'res': {
-                                        'applicants': resApps,
-                                        'success': 0
-                                    },
-                                    'nonRes': {
-                                        'applicants': nonResApps,
-                                        'success': 0
-                                    },
-                                }
-                                currentCodeMap[huntCode][prefPt] = newObj
-                                preDrawIndex+=6
+                                drawStatsArr.append(currentText)
                         
                         if '1' in currentText and not beginStatCollection:
                             beginStatCollection = True
         
                         preDrawIndex+=1
-                    
-                    # textIndex += preDrawIndex
                 
                 if 'Post-Draw Successful' in text:
                     enterPostDrawFlow = True
@@ -237,7 +227,6 @@ def mainTryTwo():
                         if beginStatCollection:
                             if 'Colorado Parks' in currentText or 'Post-Draw' in currentText:
                                 currentCodeMap[huntCode] = assignPostDrawStats(currentCodeMap[huntCode], drawStatsArr)
-                                print('IT FINISHED')
                                 enterPostDrawFlow = False
                                 beginStatCollection = False
                             else:
