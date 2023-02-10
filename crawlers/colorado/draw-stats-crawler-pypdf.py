@@ -48,7 +48,7 @@ def mainTryTwo():
     currentCodeMap = {}
     unitExceededOnePage = False
 
-    for i in range(2, 4, 1):
+    for i in range(2, 10, 1):
         page = reader.pages[i]
         pageText = page.extract_text()
         pageLines = pageText.splitlines()
@@ -108,7 +108,7 @@ def mainTryTwo():
                             beginSecondPagePostDrawStatsFlow = False
                             currentCodeMap[huntCode] = assignPreDrawStats(currentCodeMap[huntCode], preDrawData)
                             currentCodeMap[huntCode] = assignPostDrawStats(currentCodeMap[huntCode], postDrawData)
-                            print(currentCodeMap)
+                            statCounter = len(pageLines)
                         
                         postDrawCounter += 1
                         postDrawData.append(currentText)
@@ -116,19 +116,14 @@ def mainTryTwo():
                     
                     statCounter+=1
             statCounter+=1
-                # while enterPreDrawFlow:
-                #     secondPageIndex = 0
 
-                # if 'Grand Total' in text:
-                #     beginStatCollection = False
-                #     enterPreDrawFlow = False
-                # continue adding stats to previous unit
 
                 # pre draw stats
                 # post draw stats
                 # total choice pre draw stats
                 # total choice post draw stats
-            
+        
+        ## default loop
         else:
             for text in pageLines:
                 if 'Hunt Code' in text:
@@ -144,7 +139,7 @@ def mainTryTwo():
                         currentText = pageLines[textIndex + preDrawIndex]
                         
                         if beginStatCollection:
-                            if 'Post-Draw' in currentText or 'Total Choice' in currentText:
+                            if 'Post-Draw' in currentText:
                                 currentCodeMap[huntCode] = assignPreDrawStats(currentCodeMap[huntCode], drawStatsArr)
                                 enterPreDrawFlow = False
                                 beginStatCollection = False
@@ -178,44 +173,9 @@ def mainTryTwo():
 
                 textIndex +=1
 
-            # print(text)
-                
-                # while enterPostDrawFlow:
-                #     return
-                #     if text == '1' and not beginStatCollection:
-                #         beginStatCollection = True
-                #     # elif 'Pre-Draw' in text:
-                #     elif 'Total Choice' in text:
-                #         enterTotalChoicePostFlow = True
-                #         enterPostDrawFlow = False
-                #         beginStatCollection = False
-                #     else:
-                #         # assing draw stats to parent obj
-                #         print(text)
-                #         currentPreDrawIndex+=6
-
-                #     currentPreDrawIndex+=1
-
-                # while enterTotalChoicePreFlow:
-                    # return
-                    # if 'Total Choice' in text and not beginStatCollection:
-                    #     beginStatCollection = True
-                    # what would cause this shit to break?
-                    # else:
-                    #     print(text)
-                    #     currentPreDrawIndex+=6
-
-                # while enterTotalChoicePostFlow:
-                #     return
-                #     if 'Total Choice' in text and not beginStatCollection:
-                #         beginStatCollection = True
-                    # what would cause this shit to break?
-                    # else:
-                    #     print(text)
-                    #     currentPreDrawIndex+=6
-
-            
-        # reset flags
+    with open("../../outputs/colorado/co-elk-draw-stats2.json", "w") as outfile:
+        json.dump(currentCodeMap, outfile)
+    # print(currentCodeMap)
 
 mainTryTwo()
 

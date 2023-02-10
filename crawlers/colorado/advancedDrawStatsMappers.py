@@ -2,7 +2,6 @@
 def assignPreDrawStats(statsObj, dataArr):
     dataArrLen = len(dataArr) - 1
     counter = 0
-    print('statsObj', dataArr)
     while counter < dataArrLen:
         if 'Landowner Leftover' in dataArr[counter] or 'Grand Total' in dataArr[counter]:
             counter = dataArrLen
