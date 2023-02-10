@@ -8,103 +8,6 @@ finalObj = {}
 pageIndex = 0
 prefPointIndex = 0
 # currentPreferencePoint = 0
-
-def main():
-    for i in range(2, 15, 1):
-        allDrawDataOnOnePage = False
-
-        textIndex = 0
-        unitCode = ''
-        currentCodeMap = {}
-        checkForExtraDrawStats = False
-        newPage = False
-        currentPreferencePoint = 0
-        currentObj = {
-            'resident': {
-                'apps': 0,
-                'success': 0
-            },
-            'nonRes': {
-                'apps': 0,
-                'success': 0
-            }
-        }
-        beginPreDrawStats = False
-        beginPostDrawStats = False
-        finishedDrawStatsPage = False
-        totalPreDrawApplicantsHit = False
-        totalPostDrawSuccess = False
-
-        page = reader.pages[i]
-        pageText = page.extract_text()
-        pageLines = pageText.splitlines()
-        print('PAGELINES ===== ', pageLines)
-        # print (pageText)
-        for text in pageLines:
-            if 'Hunt Code' in text:
-                unitCode = pageLines[textIndex+3]
-                print(unitCode)
-
-            if 'Pre-Draw Applicants' in text and not finishedDrawStatsPage:
-                beginPreDrawStats = True
-                beginStatCollection = False
-                preDrawCounter = 0
-
-                while beginPreDrawStats:
-                    currentText = pageLines[textIndex + preDrawCounter]
-                    preferencePoint = 0
-                    
-                    if beginStatCollection:
-                        if 'Post-Draw' in currentText:
-                            beginPreDrawStats = False
-                            beginPostDrawStats = True
-                            beginStatCollection = False
-                            if int(preferencePoint) > 0:
-                                checkForExtraDrawStats = True
-                        else:
-                            preferencePoint = currentText
-                            resApps = 0 if pageLines[textIndex + preDrawCounter + 1] == '-' else int(pageLines[textIndex + preDrawCounter + 1])
-                            nonResApps = 0 if pageLines[textIndex + preDrawCounter + 2] == '-' else int(pageLines[textIndex + preDrawCounter + 2])
-                            newObj = {
-                                'res': {
-                                    'applicants': resApps,
-                                    'success': 0
-                                },
-                                'nonRes': {
-                                    'applicants': nonResApps,
-                                    'success': 0
-                                },
-                            } 
-                            currentCodeMap[preferencePoint] = newObj
-                            preDrawCounter+=6
-
-                    if '1' in currentText and not beginStatCollection:
-                        print('begin Pre draw stat collection')
-                        beginStatCollection = True
-
-                    preDrawCounter += 1
-
-
-                while beginPostDrawStats:
-                    currentText = pageLines[textIndex + preDrawCounter]
-                    if beginStatCollection:
-                        if 'Colorado Parks and Wildlife' in currentText or 'Post-Draw' in currentText:
-                            beginPostDrawStats = False
-                            beginStatCollection = False
-                        else:
-                            preferencePoint = currentText
-                            resApps = 0 if pageLines[textIndex + preDrawCounter + 1] == '-' else int(pageLines[textIndex + preDrawCounter + 1])
-                            nonResApps = 0 if pageLines[textIndex + preDrawCounter + 2] == '-' else int(pageLines[textIndex + preDrawCounter + 2])
-                            currentCodeMap[preferencePoint]['res']['success'] = resApps
-                            currentCodeMap[preferencePoint]['nonRes']['success'] = nonResApps
-                            preDrawCounter+=6
-                        
-                    if '1' in currentText and not beginStatCollection:
-                        print('begin Pre draw stat collection')
-                        beginStatCollection = True
-
-                    preDrawCounter += 1
-
             #     textIndex = textIndex + preDrawCounter
             # if 'Post-Draw' in text:
             #     beginPostDrawStats = True
@@ -145,7 +48,7 @@ def mainTryTwo():
     currentCodeMap = {}
     unitExceededOnePage = False
 
-    for i in range(2, 10, 1):
+    for i in range(2, 4, 1):
         page = reader.pages[i]
         pageText = page.extract_text()
         pageLines = pageText.splitlines()
@@ -166,23 +69,59 @@ def mainTryTwo():
         enterTotalChoicePreFlow = False
         enterTotalChoicePostFlow = False
         beginStatCollection = False
-        # print(pageLines)
+
         if unitExceededOnePage:
-            # identify what part of the collection we are in
-            # continue 1st draw choice or
-            # total choice
-            # tbh might be in the first line of text....
             beginStatCollection = True
-            # will always be pre draw data first
-            while beginStatCollection:
-                enterPreDrawFlow = True
+            beginSecondPagePostDrawStatsFlow = False
+            beginCounter = True
+            statCounter = 0
+            postDrawCounter = 0
+            postDrawCounter = 0
+            preDrawData = []
+            postDrawData = []
 
-                while enterPreDrawFlow:
-                    secondPageIndex = 0
+            ## while -> instead of for loop
+            if pageLines[0] == '1':
+                statCounter+=1
+                while statCounter < len(pageLines):
+                    # identify what part of the collection we are in
+                    # continue 1st draw choice or
+                    # total choice
+                    # tbh might be in the first line of text....
+                    # will always be pre draw data first
+                    # count how much data i need to collect
+                    while beginCounter:
+                        enterPreDrawFlow = False
+                        currentText = pageLines[textIndex + statCounter]
+                        if currentText == 'Landowner Leftover Choice 3':
+                            beginCounter = False
+                            beginSecondPagePostDrawStatsFlow = True
+                            statCounter += 4
+                            textIndex = statCounter + textIndex
 
-                if 'Grand Total' in text:
-                    beginStatCollection = False
-                    enterPreDrawFlow = False
+                        preDrawData.append(currentText)
+                        statCounter+=1
+                
+                    while beginSecondPagePostDrawStatsFlow and postDrawCounter < statCounter:
+                        currentText = pageLines[textIndex + postDrawCounter]
+                        if  'Colorado Parks and Wildlife' in currentText:
+                            beginSecondPagePostDrawStatsFlow = False
+                            currentCodeMap[huntCode] = assignPreDrawStats(currentCodeMap[huntCode], preDrawData)
+                            currentCodeMap[huntCode] = assignPostDrawStats(currentCodeMap[huntCode], postDrawData)
+                            print(currentCodeMap)
+                        
+                        postDrawCounter += 1
+                        postDrawData.append(currentText)
+                        statCounter += 1
+                    
+                    statCounter+=1
+            statCounter+=1
+                # while enterPreDrawFlow:
+                #     secondPageIndex = 0
+
+                # if 'Grand Total' in text:
+                #     beginStatCollection = False
+                #     enterPreDrawFlow = False
                 # continue adding stats to previous unit
 
                 # pre draw stats
@@ -276,7 +215,10 @@ def mainTryTwo():
                     #     currentPreDrawIndex+=6
 
             
-            
         # reset flags
 
 mainTryTwo()
+
+# count the amount of data i need to collect
+# then get that for the second data
+
