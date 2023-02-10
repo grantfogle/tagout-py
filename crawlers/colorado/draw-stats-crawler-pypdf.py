@@ -7,48 +7,13 @@ reader = PdfReader(colorado['elk']['drawStatsInput'])
 finalObj = {}
 pageIndex = 0
 prefPointIndex = 0
-# currentPreferencePoint = 0
-            #     textIndex = textIndex + preDrawCounter
-            # if 'Post-Draw' in text:
-            #     beginPostDrawStats = True
-            # if checkForExtraDrawStats:
-                
-
-            # textIndex += 1
-
-        # for line in pageLines:
-        #     print(line)
-
-    # with open("../../outputs/colorado/co-elk-harvest-stats2.json", "w") as outfile:
-    #     json.dump(finalObj, outfile)
-
-# pre-draw applicants (first)
-
-## average length of draw stats is 7
-## first item is preference point
-## will need a preference point counter
-
-
-# post-draw successful (second)
-
-
-# left over pre draw/post draw data - if data goes outside of page
-# 2021 Primary ELK Post Draw Report 
-# Landowner Leftover Choice 
-## Always has just two results
-# Total Choice 1
-# if (text == 'Total Choice 1'):
-#     beginTotalChoice
-# Total Choice 2
-# Total Choice 3
-# Total Choice 4
 
 def mainTryTwo():
     huntCode = ''
     currentCodeMap = {}
     unitExceededOnePage = False
 
-    for i in range(2, 10, 1):
+    for i in range(2, 963, 1):
         page = reader.pages[i]
         pageText = page.extract_text()
         pageLines = pageText.splitlines()
