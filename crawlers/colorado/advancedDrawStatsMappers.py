@@ -2,6 +2,7 @@
 def assignPreDrawStats(statsObj, dataArr):
     dataArrLen = len(dataArr) - 1
     counter = 0
+
     while counter < dataArrLen:
         if 'Landowner Leftover' in dataArr[counter] or 'Grand Total' in dataArr[counter]:
             counter = dataArrLen
@@ -43,6 +44,7 @@ def assignPreDrawStats(statsObj, dataArr):
 def assignPostDrawStats(statsObj, dataArr):
     dataArrLen = len(dataArr) - 1
     counter = 0
+
     while counter < dataArrLen:
         if 'Landowner Leftover' in dataArr[counter] or 'Grand Total' in dataArr[counter]:
             counter = dataArrLen
@@ -61,6 +63,3 @@ def assignPostDrawStats(statsObj, dataArr):
             statsObj[prefPt]['nonRes']['success'] = 0 if nonResSuccess == '-' else int(nonResSuccess)
             counter+=7
     return statsObj
-
-# def assignTotalChoicePreDrawStats(statsObj, dataArr):
-# def assignTotalChoicePostDrawStats(statsObj, dataArr):
