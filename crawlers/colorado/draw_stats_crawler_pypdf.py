@@ -1,7 +1,7 @@
 import json
-from crawlerMap import colorado
+from crawler_map import colorado
 from pypdf import PdfReader
-from advancedDrawStatsMappers import assignPostDrawStats, assignPreDrawStats
+from pre_post_draw_stats_breakdown import assignPostDrawStats, assignPreDrawStats
 
 reader = PdfReader(colorado['elk']['drawStatsInput'])  
 finalObj = {}
