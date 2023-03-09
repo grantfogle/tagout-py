@@ -1,10 +1,9 @@
 import json
-from crawlerMap import colorado
 from pypdf import PdfReader
 
-def main():
+def getPopulationData(source):
     index = 0
-    reader = PdfReader(colorado['elk']['populationStatsInput'])
+    reader = PdfReader(source)
     page = reader.pages[0]
     pageText = page.extract_text()
     pageLines = pageText.splitlines()
@@ -17,9 +16,9 @@ def main():
                 finalDataObj[unit] = dataObj[unit]                
         index += 1
 
-    print(finalDataObj)
-    with open(colorado['elk']['populationStatsOutput'], "w") as outfile:
-        json.dump(finalDataObj, outfile)
+    return(finalDataObj)
+    # with open(colorado['elk']['populationStatsOutput'], "w") as outfile:
+    #     json.dump(finalDataObj, outfile)
 
 def getFormattedData(popLine):
     pop = popLine.split(' ')
@@ -28,7 +27,7 @@ def getFormattedData(popLine):
     obj = {
         'dau': pop[0],
         'populationEstimate': pop[len(pop) - 2],
-        'bullCowRatio': pop[len(pop) - 1],
+        'maleFemaleRatio': pop[len(pop) - 1],
         'dauUnits': []
     }
     for item in slicedPop:
@@ -42,7 +41,6 @@ def getFormattedData(popLine):
     #  if 
     #
     #
-    dataObj = {}
     # print(slicedPop)
 
 # first number is dau
@@ -55,4 +53,4 @@ def getFormattedData(popLine):
 # for table in coloradoDataTables:
 #     print(table)
 #     print(table[0])
-main()
+# main()
