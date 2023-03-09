@@ -10,8 +10,8 @@ colorado = {
             'output': '../../outputs/colorado/elk/co-elk-populations.json',
         },
         'harvestStats': {
-            'input': '../../inputs/colorado/2021StatewideElkHarvest.pdf',
-            'output': '../../outputs/colorado/co-elk-populations.json',
+            'input': '../../inputs/colorado/elk/2021StatewideElkHarvest.pdf',
+            'output': '../../outputs/colorado/elk/co-elk-populations.json',
             'harvestMap': {
                 'O1A': {
                     'startIndex': 55,
@@ -84,7 +84,7 @@ colorado = {
         'harvestStats': {
             'input': '../../inputs/colorado/deer/2021StatewideDeerHarvest.pdf',
             'output': '../../outputs/colorado/deer/deer-harvest-stats.json',
-            'harvestMaps': {
+            'harvestMap': {
                 'O1A': {
                     'startIndex': 32,
                     'totalPages': 5,

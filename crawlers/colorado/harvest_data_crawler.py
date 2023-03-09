@@ -1,46 +1,20 @@
 import json
-from crawlerMap import colorado
 from pypdf import PdfReader
 
-iterableObj = {
-    'O1A': {
-        'startIndex': 55,
-        'totalPages': 4,
-    },
-    'O1M': {
-        'startIndex': 59,
-        'totalPages': 4,
-    },
-    'O1R': {
-        'startIndex': 21,
-        'totalPages': 4,
-    },
-    'O2R': {
-        'startIndex': 25,
-        'totalPages': 4,
-    },
-    'O3R': {
-        'startIndex': 29,
-        'totalPages': 4,
-    },
-    'O4R': {
-        'startIndex': 33,
-        'totalPages': 4,
-    }
-}
 finalObj = {
     'O1A': {},
-    'O1M': {},
     'O1R': {},
     'O2R': {},
     'O3R': {},
-    'O4R': {}
+    'O4R': {},
+    'L1R': {},
+    'E1R': {},
+    'O1M': {}
 }
 
-reader = PdfReader(colorado['elk']['harvestStatsInput'])
+def breakdownData(input, huntCode, startPage, pageCount, species):
+    reader = PdfReader(input)
 
-# paramaters: huntCode, startIndex, pages
-def getHarvestData(huntCode, startPage, pageCount):
     for i in range(pageCount):
         archeryIndex = i + startPage
         page = reader.pages[archeryIndex]
@@ -53,39 +27,38 @@ def getHarvestData(huntCode, startPage, pageCount):
             dataStr = dataStr.replace('sum ', '')
         
             dataArr = dataStr.split(' ')
-            if 'Total' not in dataArr and 'Days' not in dataArr:
-                finalObj[huntCode][dataArr[0]] = {
-                    'bulls': dataArr[1],
-                    'cows': dataArr[2],
-                    'calves': dataArr[3],
-                    'total': dataArr[4],
-                    'hunters': dataArr[5],
-                    'successPercent': dataArr[6],
-                    'recDays': dataArr[7]
-                }
-                
-    # print(finalObj)
-        ## if row has total
-        ## remove sum sum sum from 
-        # remove last 
-        # if length is too short
-        # print(pageLines)
+            if species == 'pronghorn':
+                print(dataArr)
+            if 'Total' not in dataArr and 'Days' not in dataArr and 'ntler' and len(dataArr) > 7:
+                if species == 'elk':
+                    finalObj[huntCode][dataArr[0]] = {
+                        'bulls': dataArr[1],
+                        'cows': dataArr[2],
+                        'calves': dataArr[3],
+                        'total': dataArr[4],
+                        'hunters': dataArr[5],
+                        'successPercent': dataArr[6],
+                        'recDays': dataArr[7]
+                    }
+                else:
+                    finalObj[huntCode][dataArr[0]] = {
+                        'bucks': dataArr[1],
+                        'does': dataArr[2],
+                        'fawns': dataArr[3],
+                        'total': dataArr[4],
+                        'hunters': dataArr[5],
+                        'successPercent': dataArr[6],
+                        'recDays': dataArr[7]
+                    }
 
-# def cleanUpData(dataRow):
-#     if dataRow.length > 1
 
+def getHarvestData(harvestInput, harvestMap, species):
 
-def main():
-    for key in iterableObj:
-        getHarvestData(key, iterableObj[key]['startIndex'], iterableObj[key]['totalPages'])
-    # getHarvestData('O1A', 55, 4)
-    # getHarvestData('O1A', 55, 4)
-    # getHarvestData('O1A', 55, 4)
-    # getHarvestData('O1A', 55, 4)
-
-    with open("../../outputs/colorado/co-elk-harvest-stats.json", "w") as outfile:
-        json.dump(finalObj, outfile)
-
+    for key in harvestMap:
+        breakdownData(harvestInput, key, harvestMap[key]['startIndex'], harvestMap[key]['totalPages'], species)
     
 
-main()
+    return finalObj
+
+    # with open("../../outputs/colorado/co-elk-harvest-stats.json", "w") as outfile:
+    #     json.dump(finalObj, outfile)
