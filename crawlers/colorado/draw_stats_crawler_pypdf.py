@@ -1,19 +1,19 @@
 import json
-from crawlerMap import colorado
+from crawler_map import colorado
 from pypdf import PdfReader
-from advancedDrawStatsMappers import assignPostDrawStats, assignPreDrawStats
+from pre_post_draw_stats_breakdown import assignPostDrawStats, assignPreDrawStats
 
-reader = PdfReader(colorado['elk']['drawStatsInput'])  
-finalObj = {}
-pageIndex = 0
-prefPointIndex = 0
-
-def mainTryTwo():
+def main(input, startIndex, endIndex):
     huntCode = ''
     currentCodeMap = {}
     unitExceededOnePage = False
+    # finalObj = {}
+    # pageIndex = 0
+    # prefPointIndex = 0
+    reader = PdfReader(input) 
 
-    for i in range(2, 963, 1):
+
+    for i in range(startIndex, endIndex, 1):
         print(huntCode)
         page = reader.pages[i]
         pageText = page.extract_text()
@@ -21,6 +21,7 @@ def mainTryTwo():
         pageType = ['new unit', 'continue unit']
         currentPageType = pageLines[0]
         textIndex = 0
+        
         if pageLines[0] == '# Drawn':
             unitExceededOnePage = False
         else:
@@ -155,9 +156,11 @@ def mainTryTwo():
                         postDrawIndex+=1
 
                 textIndex +=1
-    with open("../../outputs/colorado/co-elk-draw-stats2.json", "w") as outfile:
-        json.dump(currentCodeMap, outfile)
+    
+    return currentCodeMap
 
 
-mainTryTwo()
+def getDrawStats(input, startIndex, endIndex):
+    return main(input, startIndex, endIndex)
+
 
