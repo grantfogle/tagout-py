@@ -2,8 +2,12 @@ colorado = {
     'elk': {
         # 'unitRegex': 'E[A-Z]\d\d\d[A-Z]\d[A-Z]',
         'drawStats': {
-            'input': '../../inputs/colorado/elk/2022ElkDrawRecap.pdf',
+            'input': '../../inputs/colorado/elk/2021ElkDrawRecap.pdf',
             'output': '../../outputs/colorado/elk/2022-co-elk-draw-stats.json',
+            'drawStatsMap': {
+                'startIndex': 2,
+                'endIndex': 963
+            }
         },
         'populationStats': {
             'input': '../../inputs/colorado/elk/2021ElkPopulationEstimates.pdf',
@@ -42,8 +46,12 @@ colorado = {
     },
     'pronghorn': {
         'drawStats': {
-            'input': '../../inputs/colorado/pronghorn/2022PronghornDrawRecap.pdf',
+            'input': '../../inputs/colorado/pronghorn/2021PronghornDrawRecap.pdf',
             'output': '../../outputs/colorado/pronghorn/pronghorn-draw-stats.json',
+            'drawStatsMap': {
+                'startIndex': 2,
+                'endIndex': 357
+            }
         },
         'populationStats': {
             'input': '../../inputs/colorado/pronghorn/2021PronghornPopulationEstimates.pdf',
@@ -74,8 +82,12 @@ colorado = {
     },
     'deer': {
         'drawStats': {
-            'input': '../../inputs/colorado/deer/2022DeerDrawRecap.pdf',
+            'input': '../../inputs/colorado/deer/2021DeerDrawRecap.pdf',
             'output': '../../outputs/colorado/deer/deer-draw-stats.json',
+            'drawStatsMap': {
+                'startIndex': 2,
+                'endIndex': 1049
+            }
         },
         'populationStats': {
             'input': '../../inputs/colorado/deer/2021DeerPopulationEstimates.pdf',
@@ -116,19 +128,19 @@ colorado = {
             }
         }
     },
-    'bear': {
-        'drawStats': {
-            'input': '../../inputs/colorado/bear/2022BearDrawRecap.pdf',
-            'output': '../../outputs/colorado/bear/bear-draw-stats.json',
-        },
+    # 'bear': {
+    #     'drawStats': {
+    #         'input': '../../inputs/colorado/bear/2022BearDrawRecap.pdf',
+    #         'output': '../../outputs/colorado/bear/bear-draw-stats.json',
+    #     },
         # 'populationStats': {
         #     'input': '../../inputs/colorado/bear/2021BearPopulationEstimates.pdf',
         #     'output': '../../outputs/colorado/bear/bear-population-stats.json',
         # },
-        'harvestStats': {
-            'input': '../../inputs/colorado/bear/2021StatewideBearHarvest.pdf',
-            'output': '../../outputs/colorado/bear/bear-harvest-stats.json',
-            'harvestMap': {}
-        }
-    }
+    #     'harvestStats': {
+    #         'input': '../../inputs/colorado/bear/2021StatewideBearHarvest.pdf',
+    #         'output': '../../outputs/colorado/bear/bear-harvest-stats.json',
+    #         'harvestMap': {}
+    #     }
+    # }
 }

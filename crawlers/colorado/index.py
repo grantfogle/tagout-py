@@ -1,6 +1,6 @@
 import json
 from crawler_map import colorado
-# from draw_stats_crawler_pypdf import getDrawStats
+from draw_stats_crawler_pypdf import getDrawStats
 from harvest_data_crawler import getHarvestData
 from population_data_crawler import getPopulationData
 
@@ -28,37 +28,25 @@ finalObj = {
         }
     }
 }
-# get draw stats for all species
+
 for species in colorado:
-    # get population stats
-    print(species)
+
     if species != 'bear':
+        drawStatsInput = colorado[species]['drawStats']['input']
         popInput = colorado[species]['populationStats']['input']
         harvestInput = colorado[species]['harvestStats']['input']
         harvestDataMap = colorado[species]['harvestStats']['harvestMap']
+        drawStatsStart = colorado[species]['drawStats']['drawStatsMap']['startIndex']
+        drawStatsEnd = colorado[species]['drawStats']['drawStatsMap']['endIndex']
 
-
+        drawStatsData = getDrawStats(drawStatsInput, drawStatsStart, drawStatsEnd)
         populationData = getPopulationData(popInput)
         harvestData = getHarvestData(colorado[species]['harvestStats']['input'], harvestDataMap, species)
-
+        
         finalObj['colorado'][species]['populationStats'] = populationData
         finalObj['colorado'][species]['harvestStats'] = harvestData
+        finalObj['colorado'][species]['drawStats'] = drawStatsData    
+    
 
-    # harvestData = getHarvestData()
-    # drawStatsData = getDrawStatsData()
-
-    # finalObj['colorado'][species]['populationStats']
-    # finalObj['colorado'][species]['harvestStats']
-    # finalObj['colorado'][species]['drawStats']
-
-# get population stats for all species
 with open(firebaseUploadJsonPath, "w") as outfile:
          json.dump(finalObj, outfile)
-
-# get harvest stats for all species
-
-# write to the json file...
-# create three different upload files
-
-
-# write to firebase upload
