@@ -20,7 +20,8 @@ finalObj = {
         'deer': {
             'populationStats': {},
             'harvestStats': {},
-            'drawStats': {}},
+            'drawStats': {}
+        },
         'bear': {
             'populationStats': {},
             'harvestStats': {},
