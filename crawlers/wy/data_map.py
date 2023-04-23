@@ -3,43 +3,35 @@ wyoming = {
         'drawStats': {
             'random': {
                 'resident': {
-                    'input': '',
-                    'output': ''
+                    'input': '/Users/grantfogle/Desktop/workspace/startups/tagout/tagout-py/inputs/wyoming/elk/draw_stats/random/2022-Res-Elk-Random-Draw-Report.pdf',
                 },
                 'nonResident': {
-                    'input': '',
-                    'output': ''
+                    'input': '/Users/grantfogle/Desktop/workspace/startups/tagout/tagout-py/inputs/wyoming/elk/draw_stats/random/2022-NR-Elk-Random-Draw-Report.pdf',
                 },
             },
             'preferencePoint': {
                 'resident': {
                     'input': '',
-                    'output': ''
                 },
                 'nonResident': {
                     'input': '',
-                    'output': ''
                 },
             },
             # cow/calf
             'other': {
                 'resident': {
                     'input': '',
-                    'output': ''
                 },
                 'nonResident': {
                     'input': '',
-                    'output': ''
                 },
             },
         },
         'harvestStats': {
-            'input': '',
-            'output': ''
+            'input': ''
         },
         'populationStats': {
-            'input': '',
-            'output': ''
+            'input': ''
         }
     },
     # 'deer': {},

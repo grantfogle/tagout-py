@@ -1,8 +1,7 @@
 import json
 from pypdf import PdfReader
 
-drawStatsObj = {}
-testPdfFile = '/Users/grantfogle/Desktop/workspace/startups/tagout/tagout-py/inputs/wyoming/elk/draw_stats/random/2022-NR-Elk-Random-Draw-Report.pdf'
+# testPdfFile = '/Users/grantfogle/Desktop/workspace/startups/tagout/tagout-py/inputs/wyoming/elk/draw_stats/random/2022-NR-Elk-Random-Draw-Report.pdf'
 # read the pdf
 # get data
 # save it into a global obj
@@ -21,21 +20,26 @@ testPdfFile = '/Users/grantfogle/Desktop/workspace/startups/tagout/tagout-py/inp
 # get draw type
 
 # STEP ONE, get the primary code that will be used to call data
-def getRandomDrawStats(species, residency, drawType):
-    huntCode = species + '_' + residency + '_' + drawType
+def getRandomDrawStats(input):
+    # drawStatsObj = {}
+    # print()
+    # huntCode =
     returnObj = {}
-    returnObj[huntCode] = extractDrawStats(huntCode, testPdfFile)
+    returnObj = extractDrawStats(input)
     print('RETURN OBJ:', returnObj)
+    return returnObj
 
 
 # we are going to begin the extraction of species data by parsing the PDF,
 # def extractDrawStats(huntCode, pdfFile) we will use an input passed to get the data
-def extractDrawStats(huntCode, pdfFile):
+def extractDrawStats(pdfFile):
     reader = PdfReader(pdfFile)
     drawStatsObj = {}
     # remove any unwanted characters
     textArr = []
-    for i in range(0, 2):
+    # get number of pages
+    print(len(reader.pages))
+    for i in range(0, len(reader.pages)):
         page = reader.pages[i]
         pageText = page.extract_text()
         pageLines = pageText.splitlines()
@@ -89,6 +93,16 @@ def extractDrawStats(huntCode, pdfFile):
                 elif textArrLen <= totalCount or 'Demand Report' in textArr[counter+textCounter]:
                     counter += textCounter
                     extractText = False
+                elif 'GEN' in textArr[totalCount]:
+                    areaKey = 'GENERAL'
+                    statsObj['description'] = 'GENERAL'
+                    statsObj['quota'] = textArr[totalCount+2]
+                    statsObj['firstChoice'] = textArr[totalCount+3]
+                    statsObj['secondChoice'] = textArr[totalCount+4]
+                    statsObj['thirdChoice'] = textArr[totalCount+5]
+                    drawStatsObj[areaKey] = statsObj
+                    print(textArr[totalCount])
+                    textCounter += 6
                 else:
                     area = textArr[totalCount]
                     type = textArr[totalCount+1]
@@ -98,6 +112,7 @@ def extractDrawStats(huntCode, pdfFile):
                     statsObj['quota'] = textArr[totalCount+3]
                     statsObj['firstChoice'] = textArr[totalCount+4]
                     statsObj['secondChoice'] = textArr[totalCount+5]
+                    print(area, type, statsObj)
                     statsObj['thirdChoice'] = textArr[totalCount+6]
 
                     if areaKey in drawStatsObj:
@@ -119,8 +134,11 @@ def getDescription(desc):
     return desc.replace(" ", "_")
 
 
-def getWyomingDrawStats(resInput, nonResInput):
-    return drawStatsObj
+def getDrawStats(input, species, residency, drawType):
+    if drawType == 'random':
+        print(input, species, residency, drawType)
+        return getRandomDrawStats(input)
+    # return drawStatsObj
 
 
 # getRandomDrawStats('E', 'NR', 'Random')
