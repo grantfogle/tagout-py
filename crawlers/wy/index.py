@@ -1,5 +1,5 @@
 from data_map import wyoming
-from draw_stats import getWyomingDrawStats
+from draw_stats import getDrawStats
 
 finalObj = {
     'wyoming': {
@@ -30,7 +30,8 @@ for species in wyoming:
     print('cats')
 
 
-
 def getDrawStats(drawStatsSource):
+
+    getRandomDrawStats('E', 'NR', 'Random')
     for drawType in drawStatsSource:
         getWyomingDrawStats(drawType['input'])
