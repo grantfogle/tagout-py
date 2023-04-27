@@ -12,12 +12,24 @@ def getHarvestStats(input, startIndex, endIndex):
         for j in range(len(pageLines)):
             if j > 4:
                 splitLine = pageLines[j].strip().split(' ')
-                # print('j: ', j, splitLine)
-
+                # print(splitLine)
                 if isHerdRow(splitLine):
+                    beginDataCollection = True
+                    dataCounter = 1
                     (unit, herd) = getHerdRow(splitLine)
                     print(unit, herd)
-                    startDataCollection()
+                    # startDataCollection()
+                    while beginDataCollection:
+                        if (dataCounter + j <= len(pageLines)):
+                            print('dataCounter,', dataCounter, splitLine)
+                            if isHerdRow(splitLine):
+                                beginDataCollection = False
+                            elif 'General' in splitLine or 'Pooled' in splitLine or 'Limited' in splitLine:
+                                print(splitLine)
+                        else:
+                            beginDataCollection = False
+
+                        dataCounter += 1
                 # iterate through line
         print('========================')
 
