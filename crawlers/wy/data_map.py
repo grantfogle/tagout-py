@@ -28,10 +28,9 @@ wyoming = {
             },
         },
         'harvestStats': {
-            'input': ''
-        },
-        'populationStats': {
-            'input': ''
+            'input': '/Users/grantfogle/Desktop/workspace/startups/tagout/tagout-py/inputs/wyoming/elk/harvest_stats/2022_Elk_HarvestReport.pdf',
+            'startIndex': 2,
+            'endIndex': 14
         }
     },
     # 'deer': {},
