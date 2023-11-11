@@ -6,23 +6,52 @@ from harvest_stats import getHarvestStats
 firebaseUploadJsonPath = '/Users/grantfogle/Desktop/workspace/startups/tagout/tagout-py/outputs/wyoming/firebase-upload.json'
 finalObj = {
     'elk': {
-        'populationStats': {},
         'harvestStats': {},
         'drawStats': {
-            'random': {},
-            'preferencePoint': {},
-            'other': {}
+            'random': {
+                'resident': {},
+                'nonResident': {}
+            },
+            'preferencePoint': {
+                'nonResident': {}
+            },
+            'other': {
+                'resident': {},
+                'nonResident': {}
+            }
         }
     },
     'pronghorn': {
-        'populationStats': {},
         'harvestStats': {},
-        'drawStats': {}
+        'drawStats': {
+            'random': {
+                'resident': {},
+                'nonResident': {}
+            },
+            'preferencePoint': {
+                'nonResident': {}
+            },
+            'other': {
+                'resident': {},
+                'nonResident': {}
+            }
+        }
     },
     'deer': {
-        'populationStats': {},
         'harvestStats': {},
-        'drawStats': {}
+        'drawStats': {
+            'random': {
+                'resident': {},
+                'nonResident': {}
+            },
+            'preferencePoint': {
+                'nonResident': {}
+            },
+            'other': {
+                'resident': {},
+                'nonResident': {}
+            }
+        }
     },
 }
 
@@ -43,16 +72,19 @@ def fetchDrawStats(drawStatsSource, species):
                 print('=====', finalObj)
 
 
-def fetchHarvestStats(input, startIndex, endIndex):
-    populationStats = getHarvestStats(input, startIndex, endIndex)
+def fetchHarvestStats(species, input, startIndex, endIndex):
+    if species == 'deer':
+        populationStats = getDeerHarvestStats(input, startIndex, endIndex)
+    else:
+        populationStats = getHarvestStats(input, startIndex, endIndex)
 
 
 for species in wyoming:
     popStatsObj = wyoming[species]['harvestStats']
     # print(species)
     # fetchDrawStats(wyoming[species]['drawStats'], species)
-    fetchHarvestStats(
-        popStatsObj['input'], popStatsObj['startIndex'], popStatsObj['endIndex'])
+    fetchHarvestStats(species,
+                      popStatsObj['input'], popStatsObj['startIndex'], popStatsObj['endIndex'])
 
 with open(firebaseUploadJsonPath, "w") as outfile:
     json.dump(finalObj, outfile)
