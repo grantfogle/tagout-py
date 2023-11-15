@@ -28,7 +28,6 @@ unitPopulationStatsArr = []
 #   maleFemaleRatio: 22
 # }]
 
-
 def getHerdNameAndUnits(textArr):
     herdName = ''
     units = []
@@ -39,7 +38,7 @@ def getHerdNameAndUnits(textArr):
         else:
             herdName += itemRemovedComma + ' '
     
-    return (herdName, units)
+    return (herdName.strip(), units)
 
 for i in range(startIndex, endIndex):
     splitTextArr = extractedTextArr[i].split(' ')
