@@ -3,4 +3,6 @@ __pycache__/*
 /outputs/*
 /inputs/*
 
+/data
+
 elk-final-stats.json
