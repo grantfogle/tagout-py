@@ -1,22 +1,33 @@
 import json
-from pdf2image import convert_from_path
-import pytesseract
+from extract_text_from_pdf import extract_text_from_pdf
 
-def extract_text_from_pdf(pdf_path):
-    # Convert PDF to images
-    pages = convert_from_path(pdf_path)
+input_path = '../../data/colorado/population_estimates/2022ElkPopulationEstimates.pdf'
+output_path = '../../data/colorado/population_estimates/outputs/2022_elk_pop_est.json'
 
-    # Process each page
-    text = ""
-    for page in pages:
-        text += pytesseract.image_to_string(page) + "\n"
+extracted_text = extract_text_from_pdf(input_path)
+extractedTextArr =  extracted_text.split('\n')
+# beginning of text you want to extract
+startIndex = 6
+# end of text you want to extract
+endIndex = len(extractedTextArr) - 10
 
-    return text
+state = 'colorado'
+species = 'elk'
+year = 2022
+# current return object
+unitPopulationStatsArr = []
+# example of object = [{
+#   state: 'co',
+#   species: 'elk',
+#   year: 2022,
+#   unit: 2,
+#   dau: 1,
+#   herdName,
+#   otherUnitsInDau: [1,2,3],
+#   populationEstimate: 100,
+#   maleFemaleRatio: 22
+# }]
 
-
-pdf_path = '../../data/colorado/population_estimates/2022ElkPopulationEstimates.pdf'
-extracted_text = extract_text_from_pdf(pdf_path)
-# print(extracted_text)
 
 def getHerdNameAndUnits(textArr):
     herdName = ''
@@ -29,25 +40,6 @@ def getHerdNameAndUnits(textArr):
             herdName += itemRemovedComma + ' '
     
     return (herdName, units)
-
-extractedTextArr =  extracted_text.split('\n')
-
-startIndex = 6
-endIndex = len(extractedTextArr) - 10
-state = 'colorado'
-species = 'elk'
-year = 2022
-# example arr Item = [{
-#   state: 'co',
-#   species: 'elk',
-#   year: 2022,
-#   unit: 2,
-#   dau: 1,
-#   otherUnitsInDau: [1,2,3],
-#   populationEstimate: 100,
-#   maleFemaleRatio: 22
-# }]
-unitPopulationStatsArr = []
 
 for i in range(startIndex, endIndex):
     splitTextArr = extractedTextArr[i].split(' ')
@@ -69,12 +61,6 @@ for i in range(startIndex, endIndex):
             'population_estimate': populationEstimate,
             'male_female_ratio': maleFemaleRatio,
         })
-    
-    print(dau, herdName, units, populationEstimate, maleFemaleRatio)
-
-print(unitPopulationStatsArr)
-
-output_path = '../../data/colorado/population_estimates/outputs/2022_elk_pop_est.json'
 
 with open(output_path, 'w') as file:
     json.dump(unitPopulationStatsArr, file, indent=4)
