@@ -1,10 +1,17 @@
-from PyPDF2 import PdfReader
+from pdf2image import convert_from_path
+import pytesseract
 
-def getPopulationData(source):
-    reader = PdfReader(source)
+def extract_text_from_pdf(pdf_path):
+    # Convert PDF to images
+    pages = convert_from_path(pdf_path)
+
+    # Process each page
     text = ""
-    for page in reader.pages:
-        # text += page.extract_text() + "\n"  # Concatenates text from each page
-    # print(text)
+    for page in pages:
+        text += pytesseract.image_to_string(page) + "\n"
 
-getPopulationData('../../data/colorado/population_estimates/2022ElkPopulationEstimates.pdf')
+    return text
+
+pdf_path = '../../data/colorado/population_estimates/2022ElkPopulationEstimates.pdf'
+extracted_text = extract_text_from_pdf(pdf_path)
+print(extracted_text)
