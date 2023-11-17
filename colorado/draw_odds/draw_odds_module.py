@@ -28,7 +28,16 @@ def get_draw_odds(pdf_file):
                 beginDataCollection = True
 
                 while beginDataCollection:
-                    # iterate through
+                    # iterate through the next x amount of lines
+                    ## look for keywords, whether a unit is a preference unit or choice 2/3 or if it made it
+                    ## to leftover draw
+                    ## if it made it to preference point draw only, then everything else is 0% draw odds
+                    ## if it made it to choice 2 then pref points is 100%
+                    ## if it made it to choice 3 then pref points is 100% and choice 2 is 100%
+                    ## if it made it to leftover draw, then all previous choices have 100% draw odds
+
+                    ## we will return objects in the following data format
+                    # { state: , unit: , season: , huntCode: , prefPoints: , choice2: , choice3: , leftover: }
                     beginDataCollection = False
             else:
                 index += 1
