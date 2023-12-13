@@ -1,4 +1,4 @@
-from PyPDF2 import PdfReader
+from tabula import read_pdf
 import re
 
 input = '../../data/colorado/draw_reports/2023ElkDrawnOut.pdf'
@@ -58,39 +58,6 @@ def get_draw_odds(pdf_file):
                         }
                     }
                 }
-                
-                while collectDrawStats:
-                    # keeps track of current index in selected hunt code
-                    tableData = pageLines[index + collect_stats_count]
-                    # determine if 
-                    # if pref 
-
-
-                    if isHuntCode(tableData) or isEndOfPage(tableData):
-                        collectDrawStats = False
-                        index += collect_stats_count
-                        # count = 2
-                        found = True
-                        break
-                    
-                    print(tableData)
-
-                    collect_stats_count += 1
-                print("======================")
-                    ## if it made it to preference point draw only, then everything else is 0% draw odds
-                    ## if it made it to choice 2 then pref points is 100%
-                    ## if it made it to choice 3 then pref points is 100% and choice 2 is 100%
-                    ## if it made it to leftover draw, then all previous choices have 100% draw odds
-
-                    ## we will return objects in the following data format
-                    # { state: , unit: , season: , huntCode: , prefPoints: , choice2: , choice3: , leftover: }
-                    # if re.match(pattern, pageLines[index]):
-                    #     beginDataCollection = False
-                    #     index += count
-                index += 1
-            else:
-                index += 1
-
 
 
 get_draw_odds(input)
