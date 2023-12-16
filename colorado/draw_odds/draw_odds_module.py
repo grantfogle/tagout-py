@@ -58,12 +58,14 @@ def get_draw_odds(pdf_file):
                         }
                     }
                 }
-                
+
                 while collectDrawStats:
                     # keeps track of current index in selected hunt code
                     tableData = pageLines[index + collect_stats_count]
                     # determine if 
                     # if pref 
+                    # if Choice 2
+                    if 
 
 
                     if isHuntCode(tableData) or isEndOfPage(tableData):
